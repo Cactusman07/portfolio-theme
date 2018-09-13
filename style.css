@@ -1,0 +1,323 @@
+/*
+Theme Name: Portfolio
+Author: Cactusman07
+Author URI: 
+Description: Custom built WordPress theme for portfolio sites by Cactusman07
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: Portfolio
+
+Custom built theme for portfolio websites foods by Cactusman07.
+*/
+
+/* -------------------------------------------------------------------
+Typography - Portfolio typography
+--------------------------------------------------------------------*/ 
+
+@font-face {
+	font-family: Crimson_Text;
+	src: url('fonts/Crimson_Text/CrimsonText-Regular.ttf');
+}
+@font-face {
+	font-family: RobotoBold;
+	src: url('fonts/Roboto/Roboto-Bold.ttf');
+}
+
+*{ margin: 0; padding: 0;}
+
+/* ---- base ---- */
+/* Color pallette 
+	FFF9A2
+	FFFCCC
+	FFFFF9
+	FFF77E
+	FFF55D
+	
+	F79DC1
+	FFF9FB
+	FCCADE
+	EF76A7
+	E3538D
+	
+	A0B4EC
+	F9FBFF
+	CDD8F9
+	7791D9
+	5370BE
+	
+	Font-pairings:
+	Crimson Text
+	Roboto
+*/
+
+html,body{ 
+	width:100%;
+	height:100%;
+	font-family:Crimson_Text;
+}
+h1,h2,h3,h4,h5{
+	font-family:RobotoBold;
+}
+p {
+	font-size: 16px;
+}
+body{
+	background-color: #FFF9A2;
+}
+html{
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.connecting-dots{
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0; 
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+/* ---- particles.js container ---- */
+
+#particles-js{
+	width: 100%;
+	height: 100%;
+	background-image: url('');
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index: 0;
+}
+/* Header */
+#header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 110px;
+}
+#header-logo{
+	position: absolute;
+    height: 95px;
+    top: -150px;
+    left: 15px;
+	opacity: 0;
+}
+/* Front Page Header styles */
+.full-page{
+	height:100%; 
+	width:100%; 
+	position: relative;
+}
+.section-inView{
+	position:absolute;
+	top:90%;
+	bottom:0;
+	right:0;
+	left:0; 
+	height:0px;
+}
+#logo-container, #about{
+	z-index: 10;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    pointer-events: none;
+}
+#logo-container{
+	height:240px;
+}
+#reset-size{
+	position: relative;
+    height: 240px;
+    width: 240px;
+    margin: auto;
+}
+#description{
+	z-index: 10;
+    position: absolute;
+    margin: auto;
+    top: initial;
+    bottom: -50px;
+    width: 100%;
+    pointer-events: none;
+    text-align: center;
+}
+.line {
+	transform: rotate(135deg);
+    border-bottom: 1px solid rgba(0,0,0,0.85);
+    border-top: 1px solid rgba(0,0,0,0.85);
+    width: 200px;
+    height: 2px;
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+#s, #m{
+	width: auto;
+	height: 110px;
+	position: absolute;
+}
+#s{
+	top:0px;
+	left:0px;
+	bottom:inherit;
+	right:inherit;
+}
+#m{
+	top:inherit;
+	left:inherit;
+	bottom:0px;
+	right:0px;
+}
+#am, #uir{
+	position:absolute;
+	font-size:16px;
+	font-weight: 800;
+}
+#am{
+	top:37%;
+	left:40%;
+	bottom:inherit;
+	right:inherit;
+}
+#uir{
+    top: inherit;
+    left: inherit;
+    bottom: 2%;
+    right: 1%;
+}
+
+/* About section */
+#about{
+    background-color: rgba(255,255,255, 0.75);
+    height: 570px;
+    width: 571px;
+    border-radius: 50%;
+    box-shadow: 12px 12px 30px rgba(55,55,55,0.5);
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+#about-description{
+	padding: 15px 30px;
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(55% at 50% 50%);
+    width: 500px;
+    height: 500px;
+    position: relative;
+    top: 20px;
+    margin: auto;
+} 
+#about-description hr{ 
+	border-top: 1px solid #000;
+    width: 80%;
+    margin: 20px auto;
+}
+#cactus{
+	height:75px;
+	width:75px;
+	padding:5px;
+	border-radius:50%;
+	margin-right: 6px;
+	text-align: center;
+}
+#skills{
+	height: 200px;
+    margin: 0px auto 8px auto;
+}
+#skills span{
+	width:45%;
+}
+#skills table{
+    background-color: grey;
+    width: 300px;
+    height: 100%;
+    margin: 5px auto 0px auto;
+}
+#skills ul{
+	text-align: left;
+}
+#skills ul li{
+	margin:5px 8px 2px 0;
+}
+#skills span ul li::before{
+    content: '';
+    position: absolute;
+    border: 1px solid #F79DC1;
+    height: 0.8em;
+    width: 0.8em;
+    border-radius: 50%;
+    background-color: #F79DC1;
+    margin: 4px 0px 0px -20px;
+}
+.rotate td div{
+	-moz-transform: rotate(-90.0deg);
+	-o-transform: rotate(-90.0deg);
+	-webkit-transform: rotate(-90.0deg);
+	transform: rotate(-90.0deg);
+}
+.matchHeights div{
+	min-height:250px;
+    background-attachment: scroll;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.portfolioContent{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255,0.8);
+    padding: 25px;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+.portfolioContent:hover{
+	background-color: rgba(255,255,255,0);
+	padding: 30px;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.8);
+}
+.portfolioContent h3{
+	font-weight:600;
+	font-size:26px;
+}
+.portfolioContent a{
+	text-decoration: none;
+	color:#000;
+	text-shadow: 2px 2px 5px rgba(255,255,255,0.8);
+	font-weight:800;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+.portfolioContent a:hover{
+	text-decoration: none;
+	color:#000;
+	text-shadow: 2px 2px 5px rgba(247,157,193,1);
+}
+
+
+
+
