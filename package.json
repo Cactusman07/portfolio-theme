@@ -1,0 +1,24 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "A Wordpress Portfolio Theme",
+  "main": "app.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cactusman07/portfolio-theme.git"
+  },
+  "keywords": [
+    "wordpress",
+    "portfolio",
+    "theme"
+  ],
+  "author": "Cactusman07",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cactusman07/portfolio-theme/issues"
+  },
+  "homepage": "https://github.com/Cactusman07/portfolio-theme#readme"
+}
