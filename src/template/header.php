@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="description" content="Hi, I'm Sam, and I make cool stuff for the online world. Get in touch with me at sam.muir59@gmail.com today.">
+	<meta name="description" content="Hi, I'm Sam, and I make cool stuff for the online world. If you'd like to hear more, get in touch with me at sam.muir59@gmail.com">
 	<meta name="author" content="Sam Muir - Sam.muir59@gmail.com" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title><?php wp_title('|', true, 'right'); ?></title>

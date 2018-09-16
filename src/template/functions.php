@@ -16,17 +16,12 @@
 	
 	/* Add JS */	
 	function Portfolio_js() {
-		wp_enqueue_script( 'particlesMin_js', get_template_directory_uri() . '/js/particles.min.js',array('jquery'), '',true);
-		wp_enqueue_script( 'particleConfig_js', get_template_directory_uri() . '/js/particle-config.js',array('jquery'), '',true);
-		wp_enqueue_script( 'connectingDot_js', get_template_directory_uri() . '/js/connecting-dot-particles.js',array('jquery'), '',true);
-		wp_enqueue_script( 'in-view_js', get_template_directory_uri() . '/js/in-view.min.js',array('jquery'), '',true);
-		wp_enqueue_script( 'app_js', get_template_directory_uri() . '/js/app.js',array('jquery'), '',true);
+		wp_enqueue_script( 'app_js', get_template_directory_uri() . '/js/app.min.js',array('jquery'), '',true);
 	}
 	add_action( 'wp_enqueue_scripts', 'Portfolio_js');
 
 	/* Add CSS */
 	function Portfolio_css() {
-		wp_enqueue_style('normalize_css', get_template_directory_uri() . '/css/normalize.css', false);
 		wp_enqueue_style('style_css', get_stylesheet_uri(), false);
 	}
 	add_action('wp_enqueue_scripts', 'Portfolio_css');

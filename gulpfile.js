@@ -1,0 +1,162 @@
+// Gulp.js configuration
+'use strict';
+
+const
+
+  // source and build folders
+  dir = {
+    src         : 'src/',
+    build       : 'C:/xampp/htdocs/sammuir.co.nz/wp-content/themes/portfolio/'
+  },
+
+  // Gulp and plugins
+  gulp          = require('gulp'),  
+  newer         = require('gulp-newer'),
+  imagemin      = require('gulp-imagemin'),
+  autoprefixer  = require('gulp-autoprefixer'),
+  concat        = require('gulp-concat'),
+  csso          = require('gulp-csso'),
+  less          = require('gulp-less'),
+  uglify        = require('gulp-uglify'),
+  watch         = require('gulp-watch')
+;
+
+const browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
+
+// Set the browser that you want to support
+const AUTOPREFIXER_BROWSERS = [
+  'ie >= 10',
+  'ie_mob >= 10',
+  'ff >= 30',
+  'chrome >= 34',
+  'safari >= 7',
+  'opera >= 23',
+  'ios >= 7',
+  'android >= 4.4',
+  'bb >= 10'
+];
+
+// PHP settings
+const php = {
+  src           : dir.src + 'template/**/*.php',
+  watch         : dir.watch + 'template/**/*.php',
+  build         : dir.build
+};
+
+// copy PHP files
+gulp.task('php', () => {
+  return gulp.src(php.src)
+    .pipe(newer(php.build))
+    .pipe(gulp.dest(php.build));
+});
+
+// image and font settings
+const images = {
+  src         : dir.src + 'images/**/*',
+  build       : dir.build + 'images/'
+};
+const fonts = {
+  src         : dir.src + 'fonts/**/*',
+  build       : dir.build + 'fonts/'
+};
+
+// image processing
+gulp.task('images', () => {
+  return gulp.src(images.src)
+    .pipe(newer(images.build))
+    .pipe(imagemin( { optimizationLevel: 5 } ))
+    .pipe(gulp.dest(images.build)); 
+});
+
+// fonts processing
+gulp.task('fonts', () => {
+  return gulp.src(fonts.src)
+    .pipe(newer(fonts.build))
+    .pipe(gulp.dest(fonts.build)); 
+});
+
+// css settings
+const css = {
+  src         : dir.src + 'less/style.less',
+  watch       : dir.src + 'less/**/**',
+  build       : dir.build
+};
+
+// css processing
+gulp.task('css', ['images', 'fonts'], () => {
+  return gulp.src(css.src)
+  .pipe(less({
+    plugins: [autoprefixer({
+      browsers: AUTOPREFIXER_BROWSERS,
+      cascade: false
+    })]
+  }))
+  .pipe(csso())
+  .pipe(gulp.dest(css.build));
+});
+
+// JavaScript settings
+const js = {
+  src         : dir.src + 'js/',
+  build       : dir.build + 'js/',
+  watch       : dir.src + 'js/**/**',
+  filename    : 'app.min.js'
+};
+
+// Move non-JS files
+gulp.task('json', () =>{
+  return gulp.src(dir.src + 'js/particles.json')
+    .pipe(gulp.dest(js.build));
+});
+
+// JavaScript processing
+gulp.task('js', ['json'], () =>{
+  return gulp.src([ js.src + 'particles.min.js', 
+                    js.src + 'particle-config.js',
+                    js.src + 'connecting-dot-particles.js',
+                    js.src + 'in-view.min.js',
+                    js.src + 'app.js', 
+                  ])
+    .pipe(concat(js.filename))
+    .pipe(uglify())
+    .pipe(gulp.dest(js.build));
+});
+
+/* // WATCHING
+// task to watch for js changes
+gulp.task('watch-js', () =>{
+  // Serve files from project root
+  browserSync.init({
+    server: {
+      baseDir: dir.src + "js/"
+    }
+  });
+  gulp.watch(watch).on("change", reload);
+});
+// task to watch for css changes
+gulp.task('watch-less', () =>{
+  // Serve files from project root
+  browserSync.init({
+    server: {
+      baseDir: dir.src + "less/"
+    }
+  });
+  gulp.watch(watch).on("change", reload);
+});
+// task to watch for php changes
+gulp.task('watch-php', () =>{
+  // Serve files from project root
+  browserSync.init({
+    server: {
+      baseDir: dir.src + "template/"
+    }
+  });
+  gulp.watch(watch).on("change", reload);
+});
+
+// Task when running `gulp` from terminal
+gulp.task('default', ['watch-less', 'watch-php', 'watch-js', 'serve']); */
+
+// run all tasks
+gulp.task('build', ['php', 'css', 'js']);
