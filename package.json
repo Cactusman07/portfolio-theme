@@ -27,7 +27,6 @@
     "gulp-imagemin": "latest",
     "gulp-less": "latest",
     "gulp-newer": "latest",
-    "gulp-uglify": "latest",
-    "gulp-watch": "latest"
+    "gulp-uglify": "latest"
   }
 }

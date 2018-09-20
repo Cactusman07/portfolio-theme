@@ -5,8 +5,9 @@ const
 
   // source and build folders
   dir = {
-    src         : 'src/',
-    build       : 'C:/xampp/htdocs/sammuir.co.nz/wp-content/themes/portfolio/'
+    src         : 'src/', // Source file path
+    build       : 'C:/xampp/htdocs/sammuir.co.nz/wp-content/themes/portfolio/', // Build path
+    localServer : 'localhost/sammuir.co.nz/' //Add your local server path here
   },
 
   // Gulp and plugins
@@ -17,8 +18,7 @@ const
   concat        = require('gulp-concat'),
   csso          = require('gulp-csso'),
   less          = require('gulp-less'),
-  uglify        = require('gulp-uglify'),
-  watch         = require('gulp-watch')
+  uglify        = require('gulp-uglify')
 ;
 
 const browserSync = require('browser-sync').create();
@@ -40,7 +40,7 @@ const AUTOPREFIXER_BROWSERS = [
 // PHP settings
 const php = {
   src           : dir.src + 'template/**/*.php',
-  watch         : dir.watch + 'template/**/*.php',
+  watch         : dir.src + 'template/**/**',
   build         : dir.build
 };
 
@@ -48,7 +48,7 @@ const php = {
 gulp.task('php', () => {
   return gulp.src(php.src)
     .pipe(newer(php.build))
-    .pipe(gulp.dest(php.build));
+    .pipe(gulp.dest(php.build))
 });
 
 // image and font settings
@@ -66,14 +66,14 @@ gulp.task('images', () => {
   return gulp.src(images.src)
     .pipe(newer(images.build))
     .pipe(imagemin( { optimizationLevel: 5 } ))
-    .pipe(gulp.dest(images.build)); 
+    .pipe(gulp.dest(images.build))
 });
 
 // fonts processing
 gulp.task('fonts', () => {
   return gulp.src(fonts.src)
     .pipe(newer(fonts.build))
-    .pipe(gulp.dest(fonts.build)); 
+    .pipe(gulp.dest(fonts.build))
 });
 
 // css settings
@@ -93,7 +93,7 @@ gulp.task('css', ['images', 'fonts'], () => {
     })]
   }))
   .pipe(csso())
-  .pipe(gulp.dest(css.build));
+  .pipe(gulp.dest(css.build))
 });
 
 // JavaScript settings
@@ -107,10 +107,10 @@ const js = {
 // Move non-JS files
 gulp.task('json', () =>{
   return gulp.src(dir.src + 'js/particles.json')
-    .pipe(gulp.dest(js.build));
+    .pipe(gulp.dest(js.build))
 });
 
-// JavaScript processing
+// JavaScript processing - define list of JS files using format below
 gulp.task('js', ['json'], () =>{
   return gulp.src([ js.src + 'particles.min.js', 
                     js.src + 'particle-config.js',
@@ -120,43 +120,32 @@ gulp.task('js', ['json'], () =>{
                   ])
     .pipe(concat(js.filename))
     .pipe(uglify())
-    .pipe(gulp.dest(js.build));
+    .pipe(gulp.dest(js.build))
 });
-
-/* // WATCHING
-// task to watch for js changes
-gulp.task('watch-js', () =>{
-  // Serve files from project root
-  browserSync.init({
-    server: {
-      baseDir: dir.src + "js/"
-    }
-  });
-  gulp.watch(watch).on("change", reload);
-});
-// task to watch for css changes
-gulp.task('watch-less', () =>{
-  // Serve files from project root
-  browserSync.init({
-    server: {
-      baseDir: dir.src + "less/"
-    }
-  });
-  gulp.watch(watch).on("change", reload);
-});
-// task to watch for php changes
-gulp.task('watch-php', () =>{
-  // Serve files from project root
-  browserSync.init({
-    server: {
-      baseDir: dir.src + "template/"
-    }
-  });
-  gulp.watch(watch).on("change", reload);
-});
-
-// Task when running `gulp` from terminal
-gulp.task('default', ['watch-less', 'watch-php', 'watch-js', 'serve']); */
 
 // run all tasks
-gulp.task('build', ['php', 'css', 'js']);
+gulp.task('build', ['php', 'css', 'js'], () => {
+  reload;
+});
+
+// Set default task to Watch, so you can start localhost work using command "gulp" only
+gulp.task('default', ['watch']);
+
+// watch for changes to files
+gulp.task('watch', ['browser-sync'], () => {
+  gulp.watch(css.watch, ['css', reload]);
+  gulp.watch(php.watch, ['php', reload]);
+  gulp.watch(images.src, ['images', reload]);
+  gulp.watch(fonts.src, ['fonts', reload]);
+  gulp.watch(js.watch, ['js', reload]);
+});
+
+// Initiate BrowserSync to start using local server URL
+gulp.task('browser-sync', () => {
+  browserSync.init({
+    proxy   : dir.localServer,
+    port    : 80,
+    baseDir : dir.src,
+    files   : ['*.php', '*.css', '**.*.js']
+  });
+});
