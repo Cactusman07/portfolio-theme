@@ -88,6 +88,7 @@ body{
 	right: 0;
 	left: 0;
 	bottom: 0;
+	overflow:hidden;
 	.section-inView{
 		position:absolute;
 		top:90%;
@@ -107,6 +108,7 @@ body{
 		bottom: 15%;
 		width: 80%;
 		pointer-events: none;
+		display: table;
 		#title{
 			z-index: 10;
 			position: absolute;
@@ -116,16 +118,15 @@ body{
 			width: 100%;
 			pointer-events: none;
 			text-align: center;
+			display: table-cell;
 		}
 		#reset-size{
 			position: relative;
 			height: 240px;
 			width: 240px;
 			margin: auto;
-			.line {
+			.line, .line-2 {
 				transform: rotate(135deg);
-				border-bottom: 1px solid rgba(0,0,0,0.85);
-				border-top: 1px solid rgba(0,0,0,0.85);
 				width: 200px;
 				height: 2px;
 				top: 0;
@@ -134,6 +135,14 @@ body{
 				right: 0;
 				bottom: 0;
 				margin: auto;
+			}
+			.line{
+				border-bottom: 1px solid rgba(0,0,0,0.85);
+				border-top: 1px solid rgba(0,0,0,0.85);
+			}
+			.line-2{
+				border-bottom: 1px solid @yellow-3;
+				border-top: 1px solid @yellow-3;
 			}
 			#s, #m{
 				width: auto;
@@ -179,8 +188,13 @@ body{
 /* rollover section */
 .black-rollover{
 	background-color: @blackfont;
+	color: @yellow-3;
+	top: 0;
+	left: 0;
+	clip: rect(auto, auto, auto, auto);
 }
 
+/* scrolling sections*/
 .scrolling{
 	height:100%; 
 	width:100%; 

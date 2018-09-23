@@ -25,10 +25,10 @@
         <div class="fixed">
             <div id="logo-container">
                 <div id="reset-size">
-                    <img src="wp-content/themes/portfolio/images/S-sharp-hollow.svg" id="s">
+                    <img src="wp-content/themes/portfolio/images/S-sharp-hollow-white.svg" id="s">
                     <p id="am">am</p>
-                    <div class="line"></div>
-                    <img src="wp-content/themes/portfolio/images/M-hollowed.svg" id="m">
+                    <div class="line-2"></div>
+                    <img src="wp-content/themes/portfolio/images/M-hollowed-white.svg" id="m">
                     <p id="uir"> uir</p>
                 </div>
                 <div id="title">
