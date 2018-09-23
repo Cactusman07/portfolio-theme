@@ -112,8 +112,7 @@ gulp.task('json', () =>{
 
 // JavaScript processing - define list of JS files using format below
 gulp.task('js', ['json'], () =>{
-  return gulp.src([ js.src + 'particles.min.js', 
-                    js.src + 'particle-config.js',
+  return gulp.src([ js.src + 'particles.js', 
                     js.src + 'connecting-dot-particles.js',
                     js.src + 'in-view.min.js',
                     js.src + 'app.js', 

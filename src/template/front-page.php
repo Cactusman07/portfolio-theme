@@ -37,11 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="scrolling" style="display:none;">
-        <!-- particle.js Author: 	Vincent Garreau  - vincentgarreau.com
-                Check it out here: 	vincentgarreau.com/particles.js
-                And here @ GitHub: 	github.com/VincentGarreau/particles.js -->
-        <div id="particles-js"></div>
+    <div class="scrolling about-container">
         <div id="about">
             <div id="about-description">
                 <?php the_content(); ?>

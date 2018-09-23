@@ -25,9 +25,22 @@ html,body{
 }
 h1,h2,h3,h4,h5{
 	font-family:RobotoBold;
+	margin-bottom:10px;
+	font-weight: 600;
 }
 h1{
+	font-size: 24px;
+}
+h2{
+	font-size: 22px;
+}
+h3{
 	font-size: 20px;
+	text-decoration: underline;
+}
+h4{
+	font-size: 18px;
+	text-decoration: underline;
 }
 p {
 	font-size: 16px;
@@ -55,7 +68,7 @@ body{
 	background-size: cover;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	position: absolute;
+	position: fixed;
 	top:0;
 	bottom:0;
 	left:0;
@@ -107,7 +120,6 @@ body{
 		left: 0;
 		bottom: 15%;
 		width: 80%;
-		pointer-events: none;
 		display: table;
 		#title{
 			z-index: 10;
@@ -180,18 +192,6 @@ body{
 			}
 		}
 	}
-	#about{
-		bottom: 0;
-	} 
-}
-
-/* rollover section */
-.black-rollover{
-	background-color: @blackfont;
-	color: @yellow-3;
-	top: 0;
-	left: 0;
-	clip: rect(auto, auto, auto, auto);
 }
 
 /* scrolling sections*/
@@ -200,83 +200,106 @@ body{
 	width:100%; 
 	position: absolute;
 	overflow: hidden;
-	margin-top:50%;
+}
+
+/* rollover section */
+.black-rollover{
+	background-color: @blackfont;
+	pointer-events: none;
+	color: @yellow-3;
+	top: 100%;
+	left: 0;
+	right: 0;
+	clip: rect(auto, auto, auto, auto);
 }
 
 /* About section */
+.about-container{
+	top: 200%;
+	z-index: 400;
+	min-height:100%;
+	height:auto;
+}
 #about{
-	z-index: 10;
-	position: absolute;
-	margin: auto;
-	top: 0;
-	right: 0;
-	left: 0;
-	width: 80%;
-	pointer-events: none;
+	z-index: 410;
+	position: relative;
+	margin: 5% auto 0 auto;
     background-color: rgba(255,255,255, 0.75);
-    height: 570px;
-    width: 571px;
-    border-radius: 50%;
-    box-shadow: 12px 12px 30px rgba(55,55,55,0.5);
-    text-align: center;
-    opacity: 0;
-    -webkit-transition: 1s ease-in-out;
-    -moz-transition: 1s ease-in-out;
-    -o-transition: 1s ease-in-out;
-    transition: 1s ease-in-out;
-}
-#about-description{
-	padding: 15px 30px;
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(55% at 50% 50%);
-    width: 500px;
-    height: 500px;
-    position: relative;
-    top: 20px;
-    margin: auto;
-} 
-#about-description hr{ 
-	border-top: 1px solid @black;
-    width: 80%;
-    margin: 20px auto;
-}
-#cactus{
-	height:75px;
-	width:75px;
-	padding:5px;
-	border-radius:50%;
-	margin-right: 6px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 12px rgba(55,55,55,.5);
 	text-align: center;
+	width:90%;
+    //opacity: 0;
+    -webkit-transition: 0.8s ease-in-out;
+    -moz-transition: 0.8s ease-in-out;
+    -o-transition: 0.8s ease-in-out;
+	transition: 0.8s ease-in-out;
+	#about-description{
+		padding: 30px 40px;
+		position: relative;
+		margin: auto;
+		line-height: 18px;
+		#cactus{
+			height:75px;
+			width:75px;
+			border-radius:50%;
+			margin-right: 20px;
+			text-align: center;
+			border: 5px solid @grey;
+			vertical-align: middle;
+			float: left;
+		}
+		.intro{
+			vertical-align: middle;
+			text-align: left;
+		}
+		hr{ 
+			border-top: 4px solid @grey;
+			width: 60%;
+			margin: 15px auto;
+		}
+		#skills{
+			margin: 0px auto;
+			background-color: @light-grey;
+			border-radius: 11px;
+    		padding: 5px 15px;
+			&:after{
+				content: "";
+				display: table;
+				clear: both;
+			}
+			.columns{
+				float: left;
+				width: 50%;
+				padding: 10px 20px;
+			}
+			ul{
+				text-align: left;
+				margin-left:20px;
+				li{
+					margin:4px 0;
+					&:before{
+						content: '';
+						position: absolute;
+						border: 1px solid @red-1;
+						height: 0.8em;
+						width: 0.8em;
+						border-radius: 50%;
+						background-color: @red-1;
+						margin: 4px 0px 0px -20px;
+					}
+				}
+			}
+		}
+	} 
+	.pointer{
+		pointer-events: all;
+		margin-top: 20px;
+		text-align: left;
+	}
 }
-#skills{
-	height: 200px;
-    margin: 0px auto 8px auto;
-}
-#skills span{
-	width:45%;
-}
-#skills table{
-    background-color: @grey;
-    width: 300px;
-    height: 100%;
-    margin: 5px auto 0px auto;
-}
-#skills ul{
-	text-align: left;
-}
-#skills ul li{
-	margin:5px 8px 2px 0;
-}
-#skills span ul li::before{
-    content: '';
-    position: absolute;
-    border: 1px solid @red-1;
-    height: 0.8em;
-    width: 0.8em;
-    border-radius: 50%;
-    background-color: @red-1;
-    margin: 4px 0px 0px -20px;
-}
+
+
 .rotate td div{
 	-moz-transform: rotate(-90.0deg);
 	-o-transform: rotate(-90.0deg);
