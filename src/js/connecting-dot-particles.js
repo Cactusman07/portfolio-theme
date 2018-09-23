@@ -17,7 +17,7 @@ var canvasDots = function() {
         y: 30 * canvas.height / 100
     };
 
-    var dotNumber = Math.round(canvas.width * canvas.height / 1200);
+    var dotNumber = Math.round(canvas.width * canvas.height / 1500);
 
     var dots = {
         nb: dotNumber,

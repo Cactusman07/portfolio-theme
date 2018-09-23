@@ -15,30 +15,9 @@ Typography - Portfolio typography
 *{ margin: 0; padding: 0;}
 
 /* ---- base ---- */
-/* Color pallette 
-	FFF9A2
-	FFFCCC
-	FFFFF9
-	FFF77E
-	FFF55D
-	
-	F79DC1
-	FFF9FB
-	FCCADE
-	EF76A7
-	E3538D
-	
-	A0B4EC
-	F9FBFF
-	CDD8F9
-	7791D9
-	5370BE
-	
-	Font-pairings:
-	Crimson Text
-	Roboto
-*/
-
+html{
+	-webkit-tap-highlight-color: @black;
+}
 html,body{ 
 	width:100%;
 	height:100%;
@@ -47,17 +26,19 @@ html,body{
 h1,h2,h3,h4,h5{
 	font-family:RobotoBold;
 }
+h1{
+	font-size: 20px;
+}
 p {
 	font-size: 16px;
 }
 body{
-	background-color: #FFF9A2;
+	background-color: @yellow-1;
 }
-html{
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
+
+/* --- Canvas Particle css --- */
 .connecting-dots{
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 	left: 0;
@@ -67,7 +48,6 @@ html{
 }
 
 /* ---- particles.js container ---- */
-
 #particles-js{
 	width: 100%;
 	height: 100%;
@@ -89,108 +69,136 @@ html{
 	left: 0;
 	right: 0;
 	height: 110px;
+	#header-logo{
+		position: absolute;
+		height: 95px;
+		top: -150px;
+		left: 15px;
+		opacity: 0;
+	}
 }
-#header-logo{
-	position: absolute;
-    height: 95px;
-    top: -150px;
-    left: 15px;
-	opacity: 0;
-}
+
 /* Front Page Header styles */
-.full-page{
+	/* Top section */
+.fixed{
 	height:100%; 
 	width:100%; 
-	position: relative;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	.section-inView{
+		position:absolute;
+		top:90%;
+		bottom:0;
+		right:0;
+		left:0; 
+		height:0px;
+	}
+	#logo-container{
+		height:240px;
+		z-index: 10;
+		position: absolute;
+		margin: auto;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 15%;
+		width: 80%;
+		pointer-events: none;
+		#title{
+			z-index: 10;
+			position: absolute;
+			margin: auto;
+			top: initial;
+			bottom: -50px;
+			width: 100%;
+			pointer-events: none;
+			text-align: center;
+		}
+		#reset-size{
+			position: relative;
+			height: 240px;
+			width: 240px;
+			margin: auto;
+			.line {
+				transform: rotate(135deg);
+				border-bottom: 1px solid rgba(0,0,0,0.85);
+				border-top: 1px solid rgba(0,0,0,0.85);
+				width: 200px;
+				height: 2px;
+				top: 0;
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			#s, #m{
+				width: auto;
+				height: 110px;
+				position: absolute;
+			}
+			#s{
+				top:0px;
+				left:0px;
+				bottom:inherit;
+				right:inherit;
+			}
+			#m{
+				top:inherit;
+				left:inherit;
+				bottom:0px;
+				right:0px;
+			}
+			#am, #uir{
+				position:absolute;
+				font-size:16px;
+				font-weight: 800;
+			}
+			#am{
+				top:37%;
+				left:40%;
+				bottom:inherit;
+				right:inherit;
+			}
+			#uir{
+				top: inherit;
+				left: inherit;
+				bottom: 2%;
+				right: 1%;
+			}
+		}
+	}
+	#about{
+		bottom: 0;
+	} 
 }
-.section-inView{
-	position:absolute;
-	top:90%;
-	bottom:0;
-	right:0;
-	left:0; 
-	height:0px;
+
+/* rollover section */
+.black-rollover{
+	background-color: @blackfont;
 }
-#logo-container, #about{
-	z-index: 10;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 80%;
-    pointer-events: none;
-}
-#logo-container{
-	height:240px;
-}
-#reset-size{
-	position: relative;
-    height: 240px;
-    width: 240px;
-    margin: auto;
-}
-#description{
-	z-index: 10;
-    position: absolute;
-    margin: auto;
-    top: initial;
-    bottom: -50px;
-    width: 100%;
-    pointer-events: none;
-    text-align: center;
-}
-.line {
-	transform: rotate(135deg);
-    border-bottom: 1px solid rgba(0,0,0,0.85);
-    border-top: 1px solid rgba(0,0,0,0.85);
-    width: 200px;
-    height: 2px;
-    top: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-}
-#s, #m{
-	width: auto;
-	height: 110px;
+
+.scrolling{
+	height:100%; 
+	width:100%; 
 	position: absolute;
-}
-#s{
-	top:0px;
-	left:0px;
-	bottom:inherit;
-	right:inherit;
-}
-#m{
-	top:inherit;
-	left:inherit;
-	bottom:0px;
-	right:0px;
-}
-#am, #uir{
-	position:absolute;
-	font-size:16px;
-	font-weight: 800;
-}
-#am{
-	top:37%;
-	left:40%;
-	bottom:inherit;
-	right:inherit;
-}
-#uir{
-    top: inherit;
-    left: inherit;
-    bottom: 2%;
-    right: 1%;
+	overflow: hidden;
+	margin-top:50%;
 }
 
 /* About section */
 #about{
+	z-index: 10;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 80%;
+	pointer-events: none;
     background-color: rgba(255,255,255, 0.75);
     height: 570px;
     width: 571px;
@@ -214,7 +222,7 @@ html{
     margin: auto;
 } 
 #about-description hr{ 
-	border-top: 1px solid #000;
+	border-top: 1px solid @black;
     width: 80%;
     margin: 20px auto;
 }
@@ -234,7 +242,7 @@ html{
 	width:45%;
 }
 #skills table{
-    background-color: grey;
+    background-color: @grey;
     width: 300px;
     height: 100%;
     margin: 5px auto 0px auto;
@@ -248,11 +256,11 @@ html{
 #skills span ul li::before{
     content: '';
     position: absolute;
-    border: 1px solid #F79DC1;
+    border: 1px solid @red-1;
     height: 0.8em;
     width: 0.8em;
     border-radius: 50%;
-    background-color: #F79DC1;
+    background-color: @red-1;
     margin: 4px 0px 0px -20px;
 }
 .rotate td div{
@@ -303,7 +311,7 @@ html{
 .portfolioContent a:hover{
 	text-decoration: none;
 	color:#000;
-	text-shadow: 2px 2px 5px rgba(247,157,193,1);
+	text-shadow: 2px 2px 5px @red-1;
 }
 
 
