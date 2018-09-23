@@ -45,6 +45,17 @@ h4{
 p {
 	font-size: 16px;
 }
+a{
+	text-decoration:none;
+	color: @blue-5;
+	transition: all .5s ease;
+	&:hover{
+		text-decoration: none;
+		color: @red-1;
+		background-color: @yellow-2;
+		border-bottom: 2px solid @red-1;
+	}
+}
 body{
 	background-color: @yellow-1;
 }
@@ -219,23 +230,18 @@ body{
 	z-index: 400;
 	min-height:100%;
 	height:auto;
+	background-color: @blue-2;
 }
 #about{
 	z-index: 410;
 	position: relative;
-	margin: 5% auto 0 auto;
-    background-color: rgba(255,255,255, 0.75);
-    border-radius: 20px;
-    box-shadow: 8px 8px 12px rgba(55,55,55,.5);
-	text-align: center;
-	width:90%;
     //opacity: 0;
     -webkit-transition: 0.8s ease-in-out;
     -moz-transition: 0.8s ease-in-out;
     -o-transition: 0.8s ease-in-out;
 	transition: 0.8s ease-in-out;
 	#about-description{
-		padding: 30px 40px;
+		padding: 30px 12%;
 		position: relative;
 		margin: auto;
 		line-height: 18px;
@@ -244,14 +250,12 @@ body{
 			width:75px;
 			border-radius:50%;
 			margin-right: 20px;
-			text-align: center;
 			border: 5px solid @grey;
 			vertical-align: middle;
 			float: left;
 		}
 		.intro{
 			vertical-align: middle;
-			text-align: left;
 		}
 		hr{ 
 			border-top: 4px solid @grey;
@@ -259,10 +263,10 @@ body{
 			margin: 15px auto;
 		}
 		#skills{
-			margin: 0px auto;
+			margin: 20px auto;
 			background-color: @light-grey;
 			border-radius: 11px;
-    		padding: 5px 15px;
+    		padding: 20px 15px 10px;
 			&:after{
 				content: "";
 				display: table;
@@ -274,7 +278,6 @@ body{
 				padding: 10px 20px;
 			}
 			ul{
-				text-align: left;
 				margin-left:20px;
 				li{
 					margin:4px 0;
@@ -294,62 +297,87 @@ body{
 	} 
 	.pointer{
 		pointer-events: all;
-		margin-top: 20px;
+		margin: 20px 0;
 		text-align: left;
 	}
 }
 
+/* Contact section */
+#contact{
+	padding: 10px 0;
+	.contact-item{
+		float: left;
+		width:30%;
+		padding-bottom:20px;
+	}
+	svg{
+		fill: @grey;
+		width: 40px;
+		height: 40px;
+		transition: all .5s ease;
+		vertical-align: middle;
+		margin-right: 4px;
+		border-radius: 50%;
+		position: relative;
+	}
+	span{
+		position: relative;
+		top: 4px;
+	}
+	a{
+		&:hover{
+			text-decoration: none;
+			color: @red-1;
+			background-color: initial;
+			border-bottom: initial;
+			span{
+				background-color: @yellow-2;
+				border-bottom: 2px solid @red-1;
+			}
+			svg{
+				box-shadow: 5px 5px 4px @light-grey;
+				bottom:4px;
+				right:4px;
+			}
+			#gmail{
+				fill: #ff4c4c;
+			}
+			#phone{
+				fill: @yellow-5;
+				background-image: radial-gradient(@black, @yellow-5);
+			}
+			#facebook{
+				fill: #3B5998;
+			}
+			#twitter{
+				fill: #006dbf;
+			}
+			#linkedIn{
+				fill: #0077B5;
+			}
+			#gitHub{
+				fill: @black;
+			}
+			#treehouse{
+				fill: #5fcf80;
+			}
+		}
+	}
+}
 
-.rotate td div{
-	-moz-transform: rotate(-90.0deg);
-	-o-transform: rotate(-90.0deg);
-	-webkit-transform: rotate(-90.0deg);
-	transform: rotate(-90.0deg);
-}
-.matchHeights div{
-	min-height:250px;
-    background-attachment: scroll;
-    background-position: left center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.portfolioContent{
+/* footer */
+footer{
 	position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255,255,255,0.8);
-    padding: 25px;
-    -webkit-transition: 0.5s ease-in-out;
-    -moz-transition: 0.5s ease-in-out;
-    -o-transition: 0.5s ease-in-out;
-    transition: 0.5s ease-in-out;
+	bottom: 0;
+	height:40px;
+	width: 100%;
+	padding: 10px 10%;
+	background-color: @blue-3;
+	span{
+		float: right;
+	}
 }
-.portfolioContent:hover{
-	background-color: rgba(255,255,255,0);
-	padding: 30px;
-	box-shadow: 5px 5px 10px rgba(0,0,0,0.8);
-}
-.portfolioContent h3{
-	font-weight:600;
-	font-size:26px;
-}
-.portfolioContent a{
-	text-decoration: none;
-	color:#000;
-	text-shadow: 2px 2px 5px rgba(255,255,255,0.8);
-	font-weight:800;
-    -webkit-transition: 0.5s ease-in-out;
-    -moz-transition: 0.5s ease-in-out;
-    -o-transition: 0.5s ease-in-out;
-    transition: 0.5s ease-in-out;
-}
-.portfolioContent a:hover{
-	text-decoration: none;
-	color:#000;
-	text-shadow: 2px 2px 5px @red-1;
-}
+
 
 
 
