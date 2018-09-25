@@ -22,7 +22,7 @@ const
 ;
 
 const browserSync = require('browser-sync').create();
-var reload = browserSync.reload;
+var reload = browserSync.reload().pipe;
 
 // Set the browser that you want to support
 const AUTOPREFIXER_BROWSERS = [
@@ -49,6 +49,11 @@ gulp.task('php', () => {
   return gulp.src(php.src)
     .pipe(newer(php.build))
     .pipe(gulp.dest(php.build))
+    .pipe(notify({
+      title: "PHP templates saved",
+      message: "All PHP template files have been saved and moved to the build folder.",
+      onLast: true
+    }))
 });
 
 // image and font settings
@@ -65,8 +70,13 @@ const fonts = {
 gulp.task('images', () => {
   return gulp.src(images.src)
     .pipe(newer(images.build))
-    .pipe(imagemin( { optimizationLevel: 5 } ))
+    .pipe(imagemin( { optimizationLevel: 5, progressive: true, interlaced: true } ))
     .pipe(gulp.dest(images.build))
+    .pipe(notify({
+      title: "Images added",
+      message: "All Images files have been compressed and moved to the build folder.",
+      onLast: true
+    }))
 });
 
 // fonts processing
@@ -94,6 +104,11 @@ gulp.task('css', ['images', 'fonts'], () => {
   }))
   .pipe(csso())
   .pipe(gulp.dest(css.build))
+  .pipe(notify({
+    title: "LESS Compiled",
+    message: "All LESS files have been recompiled to CSS.",
+    onLast: true
+  }))
 });
 
 // JavaScript settings
@@ -120,6 +135,11 @@ gulp.task('js', ['json'], () =>{
     .pipe(concat(js.filename))
     .pipe(uglify())
     .pipe(gulp.dest(js.build))
+    .pipe(notify({
+      title: "JS concatenated",
+      message: "All JS files have been concatenated and minified.",
+      onLast: true
+    }))
 });
 
 // run all tasks
