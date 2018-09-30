@@ -18,7 +18,7 @@ Typography - Portfolio typography
 html{
 	-webkit-tap-highlight-color: @black;
 }
-html,body{ 
+html,body{
 	width:100%;
 	height:100%;
 	font-family:Crimson_Text;
@@ -31,8 +31,6 @@ h1,h2,h3,h4,h5{
 }
 h1{
 	font-size: 24px;
-	border-top: 2px solid @blackfont-opac;
-	border-bottom: 2px solid @blackfont-opac;
 }
 h2{
 	font-size: 22px;
@@ -140,11 +138,18 @@ body{
 			position: absolute;
 			margin: auto;
 			top: initial;
-			bottom: -50px;
+			bottom: -150px;
 			width: 100%;
 			pointer-events: none;
 			text-align: center;
 			display: table-cell;
+			h1{
+				border-top: 2px solid rgba(51,51,51,.8);
+				border-bottom: 2px solid rgba(51,51,51,.8);
+				padding: 20px 0;
+				width: 60%;
+				margin: auto;
+			}
 		}
 		#reset-size{
 			position: relative;

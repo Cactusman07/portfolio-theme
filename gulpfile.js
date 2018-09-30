@@ -22,7 +22,7 @@ const
 ;
 
 const browserSync = require('browser-sync').create();
-var reload = browserSync.reload().pipe;
+var reload = browserSync.reload();
 
 // Set the browser that you want to support
 const AUTOPREFIXER_BROWSERS = [
@@ -70,7 +70,7 @@ const fonts = {
 gulp.task('images', () => {
   return gulp.src(images.src)
     .pipe(newer(images.build))
-    .pipe(imagemin( { optimizationLevel: 5, progressive: true, interlaced: true } ))
+    .pipe(imagemin( { optimizationLevel: 5 } ))
     .pipe(gulp.dest(images.build))
     .pipe(notify({
       title: "Images added",
