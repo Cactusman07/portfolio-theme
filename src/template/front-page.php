@@ -2,36 +2,43 @@
 
     <?php while ( have_posts() ) : the_post(); ?>
 
-	<div id="header">
+	<!-- <div id="header">
 		<img src="wp-content/themes/portfolio/images/Rough Logo_Favicon.svg" id="header-logo">
-	</div>
+	</div> -->
     <canvas class="connecting-dots" id="connecting-dots"></canvas>
     <div class="fixed">
-        <div id="logo-container">
-            <div id="reset-size">
+        <div id="browser-note">
+            <span class="notice">It looks like you're IE / Edge - why?! Please use a normal browser!</span>
+            <span class="close"> X </span>
+        </div>
+        <div class="logo-container">
+            <div class="reset-size">
                 <img src="wp-content/themes/portfolio/images/S-sharp-hollow.svg" id="s">
                 <p id="am">am</p>
                 <div class="line"></div>
                 <img src="wp-content/themes/portfolio/images/M-hollowed.svg" id="m">
                 <p id="uir"> uir</p>
             </div>
-            <div id="title">
-                <h1>&#60;<?php the_title(); ?> /&#62;</h1>
+            <div class="title">
+                <h1>&#60;<?php the_title(); ?>&nbsp;/&#62;</h1>
             </div>
+        </div>
+        <div class="arrow-container">
+            <div class="arrow bounce"><i class="fa fa-angle-down fa-5x" aria-hidden="true"></i></div>
         </div>
     </div>
     <div class="black-rollover scrolling">
         <div class="fixed">
-            <div id="logo-container">
-                <div id="reset-size">
-                    <img src="wp-content/themes/portfolio/images/S-sharp-hollow-white.svg" id="s">
-                    <p id="am">am</p>
+            <div class="logo-container">
+                <div class="reset-size">
+                    <img src="wp-content/themes/portfolio/images/S-sharp-hollow-white.svg" id="s2">
+                    <p id="am2">am</p>
                     <div class="line-2"></div>
-                    <img src="wp-content/themes/portfolio/images/M-hollowed-white.svg" id="m">
-                    <p id="uir"> uir</p>
+                    <img src="wp-content/themes/portfolio/images/M-hollowed-white.svg" id="m2">
+                    <p id="uir2"> uir</p>
                 </div>
-                <div id="title">
-                    <h1>&#60;<?php the_title(); ?> /&#62;</h1>
+                <div class="title">
+                    <h1>&#60;<?php the_title(); ?>&nbsp;/&#62;</h1>
                 </div>
             </div>
         </div>
@@ -125,7 +132,7 @@
                             <path d="M17.551,15.777c-1.368,0-2.264,0.898-2.264,2.08c0,1.155,0.869,2.08,2.211,2.08h0.026c1.396,0,2.265-0.925,2.265-2.08
                             C19.762,16.676,18.921,15.777,17.551,15.777z"/>
                             </svg>
-                            <span>Samuel-muir</span>
+                            <span>Samuel-Muir</span>
                         </a>
                     </div>
                     <div class="contact-item">
@@ -161,7 +168,7 @@
                             <svg alt="Treehouse" preserveAspectRatio="xMinYMin meet" id="treehouse" viewBox="0 0 30 32">
                             <path d="M26.5 5.9c-1.1-0.6-2.8 0.4-3.9 2.2l-1.9 3.2c-0.7 1.3-0.6 3 0.3 4.2l0.1 0.1c0.9 1.2 2.1 2.4 2.4 2.8 0.2 0.2 0.4 0.5 0.5 0.9 0.3 1.1-0.3 2.3-1.5 2.6 -1.1 0.3-2.3-0.3-2.7-1.5 -0.1-0.3-0.1-0.6-0.1-0.8 0.1-0.5-0.1-1.2-0.8-2 -0.7-0.7-2.1 0.7-2.5 2.1v0.1c-0.4 1.4-0.7 2.7-0.6 2.8 0.1 0.1 0.1 0.1 0.1 0.2 0.6 1.2 0.2 2.6-1 3.2 -1.2 0.6-2.7 0.2-3.3-1s-0.2-2.6 1-3.2c0.1 0 0.1-0.1 0.2-0.1 0.1 0 0.3-0.6 0.6-1.4 0.2-0.7 0.3-1 0.4-1.3 0.1-0.4 0.3-1.4 0.2-1.8 -0.1-0.5-0.6-0.5-1.2-0.2 -0.3 0.2-0.9 0.7-1.1 0.9 -0.5 0.4-0.9 1-1.1 1.5 -0.1 0.2-0.3 0.5-0.5 0.7 -0.9 0.7-2.3 0.6-3-0.3 -0.7-0.9-0.6-2.2 0.3-3 0.3-0.2 0.6-0.4 0.9-0.4 0.5-0.1 2.4-1.2 3.5-2 0.2-0.1 0.5-0.4 0.6-0.5 0.3-0.4 0-0.7-0.3-0.7 -0.9 0.1-1.9 0.2-2.1 0.5 -0.1 0.1-0.2 0.3-0.4 0.4 -0.9 0.6-2.1 0.4-2.7-0.4 -0.6-0.8-0.4-2 0.4-2.6 0.4-0.3 0.8-0.4 1.2-0.4 0.7 0 2.5 0.4 4 0.1l0.4-0.1c1.5-0.3 3.3-1.6 4-2.9 0 0 0.7-1.2 1.6-2.7 0.9-1.5 0.8-3.2-0.1-3.7l-1.7-1c-0.9-0.5-2.3-0.5-3.2 0L1.6 7C0.7 7.5 0 8.6 0 9.6v12.8c0 1 0.7 2.2 1.6 2.7l11.9 6.5c0.9 0.5 2.3 0.5 3.2 0l11.8-6.5c0.9-0.5 1.6-1.7 1.6-2.7V9.6c0-1-0.7-2.2-1.6-2.7C26.5 5.9 28.5 7 26.5 5.9z"></path>
                             </svg>
-                            <span>Treehouse - online study profile.</span>
+                            <span>Treehouse - online profile</span>
                         </a>
                     </div>
                 </div>

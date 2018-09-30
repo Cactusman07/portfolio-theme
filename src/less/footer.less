@@ -1,0 +1,30 @@
+/* footer */
+footer{
+	position: absolute;
+	bottom: 0;
+	height:90px;
+	width: 100%;
+	padding: 10px 10%;
+    background-color: @blue-3;
+    color: @blackfont;
+    font-weight: 600;
+    border-top: 2px solid grey;
+	span{
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    .float-left{
+        float: left;
+    }
+    .float-right{
+        float: right;
+    }
+    @media only screen and (max-width: @xs-screen) {
+        span.float-left, span.float-right{
+            float: none;
+            height: initial;
+            padding: 5px 0;
+        }
+    }
+}

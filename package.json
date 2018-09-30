@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "A Wordpress Portfolio Theme",
-  "main": "index.js",
+  "main": "index",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Cactusman07/portfolio-theme.git"
@@ -27,6 +27,8 @@
     "gulp-imagemin": "latest",
     "gulp-less": "latest",
     "gulp-newer": "latest",
+    "gulp-notify": "latest",
+    "gulp-plumber": "latest",
     "gulp-uglify": "latest"
   }
 }

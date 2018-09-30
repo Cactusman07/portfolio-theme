@@ -18,11 +18,13 @@ const
   concat        = require('gulp-concat'),
   csso          = require('gulp-csso'),
   less          = require('gulp-less'),
-  uglify        = require('gulp-uglify')
+  uglify        = require('gulp-uglify'),
+  notify        = require('gulp-notify'),
+  plumber       = require('gulp-plumber')
 ;
 
 const browserSync = require('browser-sync').create();
-var reload = browserSync.reload();
+const reload = browserSync.reload;
 
 // Set the browser that you want to support
 const AUTOPREFIXER_BROWSERS = [
@@ -47,12 +49,17 @@ const php = {
 // copy PHP files
 gulp.task('php', () => {
   return gulp.src(php.src)
+    .pipe(plumber({ errorHandler: function(err) {
+        notify.onError({
+            title: "Gulp error in " + err.plugin,
+            message:  err.toString()
+        })(err);
+    }}))
     .pipe(newer(php.build))
     .pipe(gulp.dest(php.build))
     .pipe(notify({
-      title: "PHP templates saved",
-      message: "All PHP template files have been saved and moved to the build folder.",
-      onLast: true
+      message: "PHP templates moved to build folder",
+      title: "PHP Build Task Completed"
     }))
 });
 
@@ -69,19 +76,26 @@ const fonts = {
 // image processing
 gulp.task('images', () => {
   return gulp.src(images.src)
+    .pipe(plumber({ errorHandler: function(err) {
+        notify.onError({
+            title: "Gulp error in " + err.plugin,
+            message:  err.toString()
+        })(err);
+    }}))
     .pipe(newer(images.build))
-    .pipe(imagemin( { optimizationLevel: 5 } ))
+    .pipe(imagemin( { optimizationLevel: 5 /* , interlaced: true */ } ))
     .pipe(gulp.dest(images.build))
-    .pipe(notify({
-      title: "Images added",
-      message: "All Images files have been compressed and moved to the build folder.",
-      onLast: true
-    }))
 });
 
 // fonts processing
 gulp.task('fonts', () => {
   return gulp.src(fonts.src)
+    .pipe(plumber({ errorHandler: function(err) {
+        notify.onError({
+            title: "Gulp error in " + err.plugin,
+            message:  err.toString()
+        })(err);
+    }}))
     .pipe(newer(fonts.build))
     .pipe(gulp.dest(fonts.build))
 });
@@ -96,6 +110,12 @@ const css = {
 // css processing
 gulp.task('css', ['images', 'fonts'], () => {
   return gulp.src(css.src)
+  .pipe(plumber({ errorHandler: function(err) {
+      notify.onError({
+          title: "Gulp error in " + err.plugin,
+          message:  err.toString()
+      })(err);
+  }}))
   .pipe(less({
     plugins: [autoprefixer({
       browsers: AUTOPREFIXER_BROWSERS,
@@ -105,9 +125,8 @@ gulp.task('css', ['images', 'fonts'], () => {
   .pipe(csso())
   .pipe(gulp.dest(css.build))
   .pipe(notify({
-    title: "LESS Compiled",
-    message: "All LESS files have been recompiled to CSS.",
-    onLast: true
+    message: "LESS compiled, minified and moved to build folder in style.css",
+    title: "CSS Build Task Completed"
   }))
 });
 
@@ -132,13 +151,18 @@ gulp.task('js', ['json'], () =>{
                     js.src + 'in-view.min.js',
                     js.src + 'app.js', 
                   ])
+    .pipe(plumber({ errorHandler: function(err) {
+        notify.onError({
+            title: "Gulp error in " + err.plugin,
+            message:  err.toString()
+        })(err);
+    }}))
     .pipe(concat(js.filename))
     .pipe(uglify())
     .pipe(gulp.dest(js.build))
     .pipe(notify({
-      title: "JS concatenated",
-      message: "All JS files have been concatenated and minified.",
-      onLast: true
+      message: "JS compiled, concatenated, minified and moved to build folder",
+      title: "JS Build Task Completed"
     }))
 });
 
