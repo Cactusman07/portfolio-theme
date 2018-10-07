@@ -146,10 +146,10 @@ gulp.task('json', () =>{
 
 // JavaScript processing - define list of JS files using format below
 gulp.task('js', ['json'], () =>{
-  return gulp.src([ js.src + 'particles.js', 
-                    js.src + 'connecting-dot-particles.js',
+  return gulp.src([ js.src + 'connecting-dot-particles.js',
+                    js.src + 'matrix.js',
                     js.src + 'in-view.min.js',
-                    js.src + 'app.js', 
+                    js.src + 'app.js'
                   ])
     .pipe(plumber({ errorHandler: function(err) {
         notify.onError({

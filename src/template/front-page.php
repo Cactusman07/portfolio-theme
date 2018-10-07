@@ -172,6 +172,9 @@
                         </a>
                     </div>
                 </div>
+                <div class="portfolio">
+                    <span> Check out some of my work </span>
+                </div>
             </div>
         </div>
     

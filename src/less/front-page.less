@@ -1,0 +1,191 @@
+/* --- Front Page styles --- */
+
+/* Top section */
+.home{
+    background-color: @yellow-1;
+}
+
+.fixed{
+    height:100%; 
+    width:100%; 
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow:hidden;
+    .section-inView{
+        position:absolute;
+        top:90%;
+        bottom:0;
+        right:0;
+        left:0; 
+        height:0px;
+    }
+    .logo-container{
+        height:240px;
+        z-index: 10;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 15%;
+        width: 80%;
+        display: block;		
+        .title{
+            z-index: 10;
+            position: absolute;
+            margin: auto;
+            top: initial;
+            bottom: -150px;
+            width: 100%;
+            pointer-events: none;
+            text-align: center;
+            display: table-cell;
+            h1{
+                border-top: 2px solid @blackfont-opac;
+                border-bottom: 2px solid @blackfont-opac;
+                padding: 20px 0;
+                width: 60%;
+                margin: auto;
+            }
+            @media only screen and (max-width: @small-screen) {
+                h1{
+                    padding: 12px;
+                    width: 100%;
+                }
+            }
+        }
+        .reset-size{
+            position: relative;
+            height: 240px;
+            width: 240px;
+            margin: auto;
+            .line, .line-2 {
+                transform: rotate(135deg);
+                width: 200px;
+                height: 2px;
+                top: 0;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+            }
+            .line{
+                border-bottom: 1px solid @blackfont-opac;
+                border-top: 1px solid @blackfont-opac;
+            }
+            .line-2{
+                border-bottom: 1px solid @yellow-3;
+                border-top: 1px solid @yellow-3;
+            }
+            #s, #m, #s2, #m2{
+                width: auto;
+                height: 110px;
+                position: absolute;
+            }
+            #s, #s2{
+                top:0px;
+                left:0px;
+                bottom:inherit;
+                right:inherit;
+            }
+            #m, #m2{
+                top:inherit;
+                left:inherit;
+                bottom:0px;
+                right:0px;
+            }
+            #am, #uir, #am2, #uir2{
+                position:absolute;
+                font-size:16px;
+                font-weight: 800;
+            }
+            #am, #am2{
+                top:37%;
+                left:40%;
+                bottom:inherit;
+                right:inherit;
+            }
+            #uir, #uir2{
+                top: inherit;
+                left: inherit;
+                bottom: 2%;
+                right: 1%;
+            }
+        }
+        @media only screen and (max-width: @small-screen) {
+            bottom: 40%;
+            width: 85%;
+            height: 180px;
+            .reset-size{
+                width: 180px;
+                height: 180px;
+                #s, #m, #s2, #m2{
+                    width:80px;
+                }
+                #am, #uir, #am2, #uir2{
+                    font-size: 14px;
+                }
+                .line, .line-2{
+                    width: 180px;
+                }
+                #am, #am2{
+                    left: 36%;
+                }
+                #uir, #uir2{
+                    bottom: 5%;
+                    right: 0%;
+                }
+            }
+        }
+    }
+}
+
+/* scrolling sections*/
+.scrolling{
+    height:100%; 
+    width:100%; 
+    position: absolute;
+    overflow: hidden;
+}
+
+/* rollover section */
+.black-rollover{
+    z-index: 20;
+    background: linear-gradient(
+        @blackfont-opac,
+        @blackfont-opac
+        ), 
+        url('images/bill-fairs-unsplash_Auckland-Outline_BlurredInvertedPhotoshop.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    color: @yellow-3;
+    top: 100%;
+    left: 0;
+    right: 0;
+    clip: rect(auto, auto, auto, auto);
+    clip-path: inset(0 0 0 0);
+    @media screen and (-webkit-min-device-pixel-ratio:0) { 
+        -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
+    }
+    .fixed{
+        .logo-container{
+            .title{
+                h1{
+                    border-top: 2px solid @yellowfont-opac;
+                    border-bottom: 2px solid @yellowfont-opac;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: @small-screen) {
+        background-attachment: scroll;
+        background-position: center 100%;
+    }
+}
