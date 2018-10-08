@@ -15,20 +15,17 @@ $( document ).ready(function() {
 		});
 
 		/* Make Arrow fade out on scroll down */
-		inView('#about-description').on('enter', function(el){
-			$arrow.animate({
-				opacity: 0
-			}, 500 );
+		inView('footer').on('enter', function(el){
 			$arrowContainer.animate({
 				top: 0,
 				bottom: 0,
 				backgroundColor: '#CDD8F9'
-			}, 500 );
+			});
 		});	
 		inView('#about-description').on('exit', function(el){
-			$arrow.animate({
-				opacity: 1
-			}, 500 );
+			$arrowContainer.removeAttr('style');
+		});
+		inView('.black-rollover').on('enter', function(el){
 			$arrowContainer.removeAttr('style');
 		});
 

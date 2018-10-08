@@ -5,7 +5,9 @@
     z-index: 400;
     min-height:100%;
     height:auto;
-    background-color: @blue-2;
+    background: @blue-2; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right bottom, @yellow-4, @blue-2 50%, @blue-2); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right bottom, @yellow-4, @blue-2 50%, @blue-2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     #about{
         z-index: 410;
         position: relative;
@@ -145,6 +147,7 @@
         padding-left: 4px;
         border-radius: 50%;
         position: relative;
+        transition: all .5s ease;
     }
     span{
         position: relative;

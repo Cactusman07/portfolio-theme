@@ -46,6 +46,9 @@
     <!-- About start -->
     <div class="about-container scrolling">
         <div id="about">
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
             <div id="about-description">
                 <?php the_content(); ?>
 
@@ -172,8 +175,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="portfolio">
-                    <span> Check out some of my work </span>
+                <div class="btn-container">
+                    <a href="/portfolio" class="portfolio-btn">Check out my work</a>
                 </div>
             </div>
         </div>
