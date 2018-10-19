@@ -56,9 +56,25 @@ a{
 	transition: all .5s ease;
 	&:hover{
 		text-decoration: none;
-		color: @red-1;
-		background-color: @yellow-2;
-		border-bottom: 2px solid @red-1;
+		color: @red-4;
+		background-color: @blue-3;
+		border-bottom: 2px solid @red-4;
+	}
+}
+.tidy-img{
+	box-shadow: 5px 5px 12px @grey;
+	border-radius: 5px;
+	max-width: 300px;
+	height: auto;
+	transition: all .5s ease;
+	@media only screen and (max-width: @small-screen) {
+		min-width: 90px;
+		width: 50%;
+		max-width: 250px;
+		height: auto;
+	}
+	&:hover{
+		box-shadow: 10px 10px 20px @grey;
 	}
 }
 
@@ -196,4 +212,3 @@ a{
 		position: relative;
     }
 }
-

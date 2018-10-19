@@ -1,0 +1,50 @@
+/* 404 styles */
+.error404 {
+	#page404{
+        width:100%;
+        height:100%;
+        background-image: url('images/404-looking.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-attachment: fixed;
+        position: absolute;
+        color: @yellow-2;
+        #wrapper404{
+            height: 100%;
+            width: 100%;
+            background: @yellowfont-opac3x;
+            background: -webkit-linear-gradient(to top, @yellowfont-opac3x 50%, rgba(0,0,0,0)); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to top, @yellowfont-opac3x 50%, rgba(0,0,0,0)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+		.entry-title{
+            color: @yellow-1;
+            letter-spacing: 0.3px;
+            border-top: 2px solid @yellow-1;
+            border-bottom: 2px solid @yellow-1;
+            padding: 20px;
+            background-color: @blackfont-opacx2;
+        }
+        #title{
+            height: 35%;
+            min-height: 180px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .floating-box{
+            background-color: @blackfont-opacx2;
+            padding: 25px 20px;
+            a{
+                padding: 0 8px;
+                color: @blue-3;
+                &:hover{
+                    color: @red-4;
+                }
+            }
+            li{
+                margin: 6px 0;
+            }
+        }
+	}
+}

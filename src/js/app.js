@@ -42,5 +42,22 @@ $( document ).ready(function() {
 	/* End Home Page JS */
 
 	/* Portfolio JS */
-	
+	if ($("body").hasClass("page-template-page-portfolio")){
+		/* Masonry JS */
+		jQuery(window).load(function() {
+			var container = document.querySelector('#ms-container');
+			var msnry;
+
+			imagesLoaded( container, function(){
+				msnry = new Masonry( container, {
+					itemSelector: '.ms-item',
+					columnWidth: '.ms-item',
+					percentPosition: true,
+					gutter: 10
+				});
+			});
+		});
+		
+	}
+	/* End Portfolio JS */
 });

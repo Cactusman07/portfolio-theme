@@ -2,9 +2,6 @@
 
     <?php while ( have_posts() ) : the_post(); ?>
 
-	<!-- <div id="header">
-		<img src="wp-content/themes/portfolio/images/Rough Logo_Favicon.svg" id="header-logo">
-	</div> -->
     <canvas class="connecting-dots" id="connecting-dots"></canvas>
     <div class="fixed">
         <div id="browser-note">
@@ -176,7 +173,7 @@
                     </div>
                 </div>
                 <div class="btn-container">
-                    <a href="/portfolio" class="portfolio-btn">Check out my work</a>
+                    <a href="<?php echo get_home_url(); ?>/portfolio" class="portfolio-btn">Check out my work</a>
                 </div>
             </div>
         </div>

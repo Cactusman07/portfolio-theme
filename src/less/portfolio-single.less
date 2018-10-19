@@ -1,0 +1,47 @@
+#portfolioSingleContainer{
+    width:100%;
+    height:100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left 20%;
+    #title{
+        height: 20%;
+        min-height: 150px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        h1{
+            font-size: 32px;
+            position: absolute;
+            color: @yellow-3;
+            background-color: @black;
+            padding: 20px;
+            margin-left: -20px;
+        }
+    }
+    #primary{
+        height:auto;
+        min-height:100%;
+        background-color: @yellow-2;
+        padding: 0 0 50px 0;
+        border-top: 2px solid gray;
+        .pageContent{
+            p{
+                clear: both;
+                width:80%;
+                @media only screen and (max-width: @medium-screen) {
+                    width:100%;
+                }
+            }
+        }
+        .alignright{
+            float: right;
+            margin: 0 0 20px 20px;
+        }
+        .alignleft{
+            float: left;
+            margin: 0 20px 20px 0;
+        }
+    }
+}

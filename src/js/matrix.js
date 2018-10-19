@@ -37,7 +37,7 @@ $( document ).ready(function() {
                 //looping over drops
                 for(var i = 0; i < drops.length; i++)
                 {
-                    //a random chinese character to print
+                    //a random character to print
                     var text = characters[Math.floor(Math.random()*characters.length)];
                     //x = i*font_size, y = value of drops[i]*font_size
                     ctx2.fillText(text, i*font_size, drops[i]*font_size);
@@ -58,14 +58,11 @@ $( document ).ready(function() {
         };
 
         window.onresize = function(){
-            var c = document.getElementById("matrix"),
-                ctx2 = c.getContext('2d');
+            var c = document.getElementById("matrix");
 
             c.width = window.innerWidth;
             c.height = window.innerHeight;
-            ctx2.fillStyle = colorDot;
-            ctx2.lineWidth = 0.2;
-            ctx2.strokeStyle = color;
+            setInterval(draw, 33);
         }; 
     }
 });
