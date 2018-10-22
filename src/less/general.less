@@ -61,6 +61,14 @@ a{
 		border-bottom: 2px solid @red-4;
 	}
 }
+a.nohover{
+	&:hover{
+		background-color: rgba(0,0,0,0);
+		border-bottom: none;
+	}
+}
+
+/* Image tidy up */
 .tidy-img{
 	box-shadow: 5px 5px 12px @grey;
 	border-radius: 5px;
@@ -75,6 +83,16 @@ a{
 	}
 	&:hover{
 		box-shadow: 10px 10px 20px @grey;
+	}
+}
+
+/* Breadcrumb */
+.breadcrumb{
+	background-color: @blue-3;
+	font-size: 14px;
+	border-radius:0;
+	.divider{
+		margin: 0 8px;
 	}
 }
 

@@ -19,7 +19,7 @@ endif; ?>
 		<div id="primary" class="content-area">
 			<div class="breadcrumb">
 				<div class="container">
-					<a href="<?php echo get_home_url(); ?>"> Home </a> || <a href="<?php echo get_home_url() . '/portfolio'; ?>"> Portfolio </a>
+					<a href="<?php echo get_home_url(); ?>"> Home </a><span class="divider">||</span><a href="<?php echo get_home_url() . '/portfolio'; ?>"> Portfolio </a>
 				</div>
 			</div>
 			<main id="main" class="site-main" role="main">
