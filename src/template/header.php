@@ -40,3 +40,6 @@
 </head>
 
 <body <?php body_class(); ?> id="top">
+	<div id="menu-main">
+	<?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
+	</div>

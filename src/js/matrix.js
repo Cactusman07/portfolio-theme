@@ -62,7 +62,6 @@ $( document ).ready(function() {
 
             c.width = window.innerWidth;
             c.height = window.innerHeight;
-            setInterval(draw, 33);
         }; 
     }
 });
