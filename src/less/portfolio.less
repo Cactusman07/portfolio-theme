@@ -46,21 +46,26 @@
         padding: 0 0 50px 0;
         border-top: 2px solid gray;
     }
-    .ms-item{
+    .portfolio-item{
         margin-bottom: 10px;
-        height: 220px;
-        min-height: 220px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100%;
-        box-shadow: 5px 5px 12px @grey;
-        border-radius: 5px;
-        -webkit-transition-property: all;
-        transition-property: all;
-        -webkit-transition-duration: 0.5s;
-        transition-duration: 0.5s;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
+        height: 240px;
+        min-height: 240px;
+        .item-background{
+            position: relative;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            box-shadow: 5px 5px 12px @grey;
+            border-radius: 5px;
+            -webkit-transition-property: all;
+            transition-property: all;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+            height: 240px;
+            min-height: 240px;
+        }        
         h3{
             font-size: 26px;
             background-color: @yellowfont-opac;
@@ -119,7 +124,7 @@
             text-decoration: none;
             color: @blackfont;
             .portfolioItemOverlay{ opacity:1; }
-            .portfolioItemTitle { height: 40%; }
+            .portfolioItemTitle { height: 50%; }
             .portfolioItemExcerpt { opacity: 1; }
             .ms-item { background-size: 130%; }
         }

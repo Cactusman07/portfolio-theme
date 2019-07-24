@@ -108,7 +108,7 @@ const css = {
 };
 
 // css processing
-gulp.task('css', ['images', 'fonts'], () => {
+gulp.task('css', gulp.series('images', 'fonts', () => {
   return gulp.src(css.src)
   .pipe(plumber({ errorHandler: function(err) {
       notify.onError({
@@ -128,7 +128,7 @@ gulp.task('css', ['images', 'fonts'], () => {
     message: "LESS compiled, minified and moved to build folder in style.css",
     title: "CSS Build Task Completed"
   }))
-});
+}));
 
 // JavaScript settings
 const js = {
@@ -145,7 +145,7 @@ gulp.task('json', () =>{
 });
 
 // JavaScript processing - define list of JS files using format below
-gulp.task('js', ['json'], () =>{
+gulp.task('js', gulp.series('json', () =>{
   return gulp.src([ js.src + 'connecting-dot-particles.js',
                     js.src + 'matrix.js',
                     js.src + 'in-view.min.js',
@@ -164,24 +164,13 @@ gulp.task('js', ['json'], () =>{
       message: "JS compiled, concatenated, minified and moved to build folder",
       title: "JS Build Task Completed"
     }))
-});
+}));
 
 // run all tasks
-gulp.task('build', ['php', 'css', 'js'], () => {
+gulp.task('build', gulp.series('php', 'css', 'js', (async) => {
   reload;
-});
-
-// Set default task to Watch, so you can start localhost work using command "gulp" only
-gulp.task('default', ['watch']);
-
-// watch for changes to files
-gulp.task('watch', ['browser-sync'], () => {
-  gulp.watch(css.watch, ['css', reload]);
-  gulp.watch(php.watch, ['php', reload]);
-  gulp.watch(images.src, ['images', reload]);
-  gulp.watch(fonts.src, ['fonts', reload]);
-  gulp.watch(js.watch, ['js', reload]);
-});
+  async();
+}));
 
 // Initiate BrowserSync to start using local server URL
 gulp.task('browser-sync', () => {
@@ -192,3 +181,15 @@ gulp.task('browser-sync', () => {
     files   : ['*.php', '*.css', '**.*.js']
   });
 });
+
+// watch for changes to files
+gulp.task('watch', gulp.series('browser-sync', () => {
+  gulp.watch(css.watch, ['css', reload]);
+  gulp.watch(php.watch, ['php', reload]);
+  gulp.watch(images.src, ['images', reload]);
+  gulp.watch(fonts.src, ['fonts', reload]);
+  gulp.watch(js.watch, ['js', reload]);
+}));
+
+// Set default task to Watch, so you can start localhost work using command "gulp" only
+gulp.task('default', gulp.series('watch'));

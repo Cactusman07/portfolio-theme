@@ -16,7 +16,6 @@
 	
 	/* Add JS */	
 	function Portfolio_js() {
-		wp_enqueue_script( 'masonry' );
 		wp_enqueue_script( 'app_js', get_template_directory_uri() . '/js/app.min.js',array('jquery'), '',true);
 	}
 	add_action( 'wp_enqueue_scripts', 'Portfolio_js');

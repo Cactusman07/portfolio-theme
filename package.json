@@ -19,16 +19,16 @@
   },
   "homepage": "https://github.com/Cactusman07/portfolio-theme#readme",
   "devDependencies": {
-    "browser-sync": "latest",
-    "gulp": "latest",
-    "gulp-autoprefixer": "latest",
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
     "gulp-concat": "latest",
     "gulp-csso": "latest",
-    "gulp-imagemin": "latest",
+    "gulp-imagemin": "^6.0.0",
     "gulp-less": "latest",
     "gulp-newer": "latest",
     "gulp-notify": "latest",
-    "gulp-plumber": "latest",
-    "gulp-uglify": "latest"
+    "gulp-plumber": "^1.2.1",
+    "gulp-uglify": "^3.0.2"
   }
 }

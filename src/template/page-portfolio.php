@@ -28,20 +28,22 @@
 							<?php the_content(); ?>
 						</div>
 					</div>
-					<div id="ms-container" class="row">
+					<div class="row">
 						<?php 	$args = array( 'post_type' => 'portfolio_items' );
 								$loop = new WP_Query( $args );
 								while ( $loop->have_posts() ) : $loop->the_post(); ?>
 							
 						<a href="<?php the_permalink(); ?>" class="portfolioItemLink">
-							<div class="ms-item col-lg-3 col-md-4 col-sm-6 col-xs-12" style="background-image:url('<?php the_post_thumbnail_url(); ?>');'">		
-								<div class="portfolioItemTitle">
-									<h3><?php the_title(); ?></h3>
+							<div class="portfolio-item col-lg-3 col-md-4 col-sm-6 col-xs-12">		
+								<div class="item-background" style="background-image:url('<?php the_post_thumbnail_url(); ?>');'">
+									<div class="portfolioItemTitle">
+										<h3><?php the_title(); ?></h3>
+									</div>
+									<div class="portfolioItemExcerpt">
+										<?php the_excerpt(); ?>
+									</div>
+									<div class="portfolioItemOverlay"></div>
 								</div>
-								<div class="portfolioItemExcerpt">
-									<?php the_excerpt(); ?>
-								</div>
-								<div class="portfolioItemOverlay"></div>
 							</div>
 						</a>
 
