@@ -105,7 +105,7 @@
         SCREEN_WIDTH = window.innerWidth;
         SCREEN_HEIGHT = window.innerHeight;
         
-        canvas.width = SCREEN_WIDTH;
+        canvas.width = SCREEN_WIDTH - 17;
         canvas.height = SCREEN_HEIGHT;
         
         canvas.style.position = 'absolute';
