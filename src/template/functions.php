@@ -1,19 +1,19 @@
 <?php
-/* Add theme support */
-	add_theme_support( 'menus' );
-	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
-	
-/* Register menus */
-	function register_theme_menus() {
-		register_nav_menus(
-			array(
-				'main-menu' => __( 'Main Menu' )
-			)
-		);
-	}
-	add_action( 'init', 'register_theme_menus' );
-	
+	/* Add theme support */
+		add_theme_support( 'menus' );
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+		
+	/* Register menus */
+		function register_theme_menus() {
+			register_nav_menus(
+				array(
+					'main-menu' => __( 'Main Menu' )
+				)
+			);
+		}
+		add_action( 'init', 'register_theme_menus' );
+
 	/* Add JS */	
 	function Portfolio_js() {
 		wp_enqueue_script( 'app_js', get_template_directory_uri() . '/js/app.min.js',array('jquery'), '',true);

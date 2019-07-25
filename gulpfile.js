@@ -148,6 +148,7 @@ gulp.task('json', () =>{
 gulp.task('js', gulp.series('json', () =>{
   return gulp.src([ js.src + 'connecting-dot-particles.js',
                     js.src + 'matrix.js',
+                    js.src + 'trail.js',
                     js.src + 'in-view.min.js',
                     js.src + 'app.js'
                   ])

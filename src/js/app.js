@@ -44,6 +44,11 @@ $( document ).ready(function() {
 	/* Portfolio JS */
 	if ($("body").hasClass("page-template-page-portfolio")){
 		
+	}
+	/* End Portfolio JS */
+
+	/* Blog JS */
+	if ($("body").hasClass("page-template-page-portfolio")){
 		
 	}
 	/* End Portfolio JS */
