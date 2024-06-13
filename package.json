@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Cactusman07/portfolio-theme#readme",
   "devDependencies": {
-    "browser-sync": "^2.29.3",
+    "browser-sync": "^3.0.2",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^9.0.0",
     "gulp-concat": "latest",
