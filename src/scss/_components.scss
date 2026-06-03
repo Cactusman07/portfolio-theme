@@ -1,0 +1,456 @@
+// =======================================================================
+//  Components — sheet, quests, journal entries, contact cards, buttons
+// =======================================================================
+
+// --- About / character sheet ---------------------------------------
+
+.about-grid {
+	display: grid;
+	grid-template-columns: 1fr 280px;
+	gap: 32px;
+	margin: 24px 0 40px;
+}
+.about-body p { margin-bottom: 14px; }
+.about-body .lede { font-size: 18px; color: var(--ink); }
+
+.status-card {
+	background: var(--paper-soft);
+	border: 2px solid var(--ink);
+	box-shadow: 4px 4px 0 var(--gold-glow);
+	padding: 18px 20px;
+	font-family: var(--font-mono);
+	font-size: 12px;
+	color: var(--ink-soft);
+	position: relative;
+
+	h3 {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--rust);
+		margin-bottom: 8px;
+		letter-spacing: 0.05em;
+
+		&::before { content: '> '; }
+	}
+	.closing {
+		position: absolute;
+		bottom: 4px;
+		right: 12px;
+		color: var(--rust);
+		font-size: 20px;
+		opacity: 0.5;
+	}
+}
+
+.sheet {
+	background: var(--paper-soft);
+	border: 2px solid var(--ink);
+	padding: 28px;
+	box-shadow: 6px 6px 0 var(--ink);
+	margin-top: 32px;
+}
+.sheet-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 24px;
+	padding-bottom: 18px;
+	border-bottom: 1.5px dashed var(--ink-faint);
+	margin-bottom: 22px;
+
+	.sheet-class {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--rust);
+		letter-spacing: 0.05em;
+		margin-bottom: 4px;
+	}
+	.sheet-name {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		font-size: 26px;
+		color: var(--ink);
+		line-height: 1.1;
+	}
+	.sheet-level {
+		text-align: right;
+		font-family: var(--font-mono);
+
+		.lvl-label {
+			font-size: 10px;
+			color: var(--ink-muted);
+			margin-bottom: 2px;
+		}
+		.lvl-num {
+			font-family: var(--font-pixel);
+			font-size: 22px;
+			color: var(--rust);
+		}
+	}
+}
+
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px 28px;
+}
+.stat {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 12px;
+
+	.stat-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 10px;
+		margin-bottom: 6px;
+	}
+	.stat-name {
+		font-weight: 600;
+		color: var(--ink);
+		font-size: 13px;
+	}
+	.stat-bar {
+		width: 100%;
+		height: 8px;
+		background: var(--paper-deep);
+		border: 1px solid var(--ink);
+		position: relative;
+		overflow: hidden;
+	}
+	.stat-bar-fill {
+		height: 100%;
+		background: var(--rust);
+		width: 0%;
+		transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+		&.curiosity {
+			background: var(--cactus);
+			background-image: linear-gradient(90deg,
+				var(--cactus) 0%,
+				var(--cactus) 70%,
+				var(--cactus-light) 80%,
+				var(--cactus) 100%);
+		}
+	}
+	.stat-pct {
+		font-family: var(--font-pixel);
+		font-size: 10px;
+		color: var(--rust);
+		text-align: right;
+		min-width: 26px;
+		line-height: 1;
+
+		&::after { content: ''; }
+	}
+	.stat-excerpt {
+		margin-top: 7px;
+		font-size: 11px;
+		color: var(--ink-muted);
+		line-height: 1.45;
+	}
+}
+
+.inventory {
+	margin-top: 28px;
+	padding-top: 22px;
+	border-top: 1.5px dashed var(--ink-faint);
+
+	.inv-label {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--rust);
+		margin-bottom: 12px;
+		letter-spacing: 0.05em;
+
+		&::before { content: '< '; }
+		&::after  { content: ' />'; }
+	}
+}
+.inv-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+	gap: 6px;
+}
+.inv-slot {
+	background: var(--paper);
+	border: 1.5px solid var(--ink);
+	padding: 6px 10px;
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: var(--ink-soft);
+	text-align: center;
+	transition: all 0.15s;
+
+	&:hover {
+		background: var(--ink);
+		color: var(--gold-glow);
+		transform: translate(-2px, -2px);
+		box-shadow: 2px 2px 0 var(--ink);
+	}
+}
+
+// --- Quest cards (portfolio) --------------------------------------
+
+.quest-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 18px;
+	margin-top: 28px;
+}
+.quest {
+	display: block;
+	background: var(--paper-soft);
+	border: 2px solid var(--ink);
+	padding: 20px;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.18s;
+	color: var(--ink);
+	text-decoration: none;
+	overflow: hidden;
+
+	&::before {
+		content: attr(data-num);
+		position: absolute;
+		top: 10px;
+		right: 14px;
+		font-family: var(--font-pixel);
+		font-size: 9px;
+		color: var(--ink-faint);
+	}
+
+	&:hover {
+		transform: translate(-3px, -3px);
+		box-shadow: 6px 6px 0 var(--ink);
+		background: var(--paper);
+		color: var(--ink);
+	}
+
+	.quest-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 14px;
+		gap: 12px;
+	}
+	.quest-icon {
+		width: 38px;
+		height: 38px;
+		background: var(--paper-deep);
+		border: 1.5px solid var(--ink);
+		image-rendering: pixelated;
+		flex-shrink: 0;
+
+		svg, img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			image-rendering: pixelated;
+		}
+	}
+	.quest-tag {
+		display: inline-block;
+		padding: 3px 7px;
+		font-family: var(--font-mono);
+		font-size: 9px;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		border: 1px solid;
+		font-weight: 600;
+		background: transparent;
+
+		&.live, &.shipped { color: var(--cactus-dark); border-color: var(--cactus-dark); }
+		&.wip            { color: var(--gold); border-color: var(--gold); }
+		&.ongoing        { color: var(--rust); border-color: var(--rust); }
+		&.brand          { color: var(--ink-soft); border-color: var(--ink-soft); }
+		&.b2b, &.portal  { color: #4a4477; border-color: #4a4477; }
+	}
+	.quest-title {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		font-size: 18px;
+		color: var(--ink);
+		margin-bottom: 8px;
+		letter-spacing: -0.01em;
+		line-height: 1.2;
+	}
+	.quest-desc {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--ink-muted);
+		line-height: 1.55;
+		margin-bottom: 14px;
+	}
+	.quest-stack {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		padding-top: 12px;
+		border-top: 1.5px dashed var(--ink-faint);
+
+		span {
+			font-family: var(--font-mono);
+			font-size: 10px;
+			color: var(--ink-muted);
+			background: var(--paper);
+			padding: 2px 6px;
+			border: 1px solid var(--ink-faint);
+		}
+	}
+}
+
+// --- Journal entries ----------------------------------------------
+
+.journal-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 16px;
+	margin-top: 28px;
+}
+.entry {
+	display: block;
+	background: var(--paper);
+	border: 1.5px solid var(--ink);
+	padding: 18px 18px 22px;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.18s;
+	color: var(--ink);
+	text-decoration: none;
+
+	// Pixel pin/bookmark in top-right
+	&::before {
+		content: '';
+		position: absolute;
+		top: -4px;
+		right: 16px;
+		width: 8px;
+		height: 14px;
+		background: var(--rust);
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+	}
+
+	&:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 4px 4px 0 var(--rust);
+		color: var(--ink);
+	}
+
+	.entry-date {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--rust);
+		margin-bottom: 8px;
+	}
+	.entry-title {
+		font-family: var(--font-sans);
+		font-weight: 700;
+		font-size: 17px;
+		color: var(--ink);
+		margin-bottom: 8px;
+		letter-spacing: -0.01em;
+		line-height: 1.25;
+	}
+	.entry-excerpt {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: var(--ink-muted);
+		line-height: 1.55;
+		margin-bottom: 12px;
+	}
+	.entry-foot {
+		display: flex;
+		justify-content: space-between;
+		font-family: var(--font-mono);
+		font-size: 10px;
+		color: var(--ink-faint);
+
+		.read { color: var(--rust); }
+	}
+}
+
+// --- Contact panel ------------------------------------------------
+
+.contact-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 14px;
+	margin: 28px 0;
+}
+.contact-card {
+	display: block;
+	padding: 18px 22px;
+	background: var(--paper-soft);
+	border: 2px solid var(--ink);
+	font-family: var(--font-mono);
+	transition: all 0.18s;
+	color: var(--ink);
+	text-decoration: none;
+
+	&:hover {
+		background: var(--ink);
+		color: var(--gold-glow);
+		transform: translate(-2px, -2px);
+		box-shadow: 4px 4px 0 var(--gold-glow);
+
+		.label { color: var(--gold-glow); opacity: 0.7; }
+	}
+	.label {
+		font-size: 11px;
+		color: var(--rust);
+		margin-bottom: 4px;
+
+		&::before { content: '// '; }
+	}
+	.value {
+		font-size: 15px;
+		font-weight: 600;
+	}
+}
+.location-note {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	color: var(--ink-muted);
+	text-align: center;
+	margin-top: 16px;
+}
+
+.cb-tag {
+	color: var(--rust);
+	font-family: var(--font-mono);
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+// --- Buttons -------------------------------------------------------
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 18px;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	font-weight: 500;
+	border: 2px solid var(--ink);
+	cursor: pointer;
+	transition: all 0.15s;
+	text-decoration: none;
+	color: var(--ink);
+	background: var(--paper);
+
+	&:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 4px 4px 0 var(--ink);
+		color: var(--ink);
+	}
+	&.btn-primary {
+		background: var(--ink);
+		color: var(--paper);
+
+		&:hover { background: var(--rust); color: var(--paper); box-shadow: 4px 4px 0 var(--gold-glow); }
+	}
+}

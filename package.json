@@ -1,34 +1,25 @@
 {
-  "name": "portfolio",
-  "version": "1.0.0",
-  "description": "A Wordpress Portfolio Theme",
-  "main": "index",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Cactusman07/portfolio-theme.git"
+  "name": "cactusman-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Cactusman Portfolio — Sam Muir's walkable pixel-world WordPress theme.",
+  "author": "Sam Muir <hello@sammuir.co.nz>",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:wp": "npm run wp:start && npm run dev",
+    "build:assets": "vite build",
+    "build": "npm run build:assets && node scripts/package-theme.mjs",
+    "preview": "vite preview",
+    "wp:start": "wp-env start",
+    "wp:stop": "wp-env stop",
+    "wp:destroy": "wp-env destroy",
+    "wp:logs": "wp-env logs"
   },
-  "keywords": [
-    "wordpress",
-    "portfolio",
-    "theme"
-  ],
-  "author": "Cactusman07",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Cactusman07/portfolio-theme/issues"
-  },
-  "homepage": "https://github.com/Cactusman07/portfolio-theme#readme",
   "devDependencies": {
-    "browser-sync": "^3.0.4",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^9.0.0",
-    "gulp-concat": "latest",
-    "gulp-csso": "latest",
-    "gulp-imagemin": "^6.0.0",
-    "gulp-less": "latest",
-    "gulp-newer": "latest",
-    "gulp-notify": "latest",
-    "gulp-plumber": "^1.2.1",
-    "gulp-uglify": "^3.0.2"
+    "@wordpress/env": "^10.19.0",
+    "sass": "^1.83.0",
+    "vite": "^6.0.0"
   }
 }

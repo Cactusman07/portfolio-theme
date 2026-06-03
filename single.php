@@ -1,0 +1,68 @@
+<?php
+/**
+ * Single post — blog article view.
+ *
+ * @package CactusmanPortfolio
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+get_header();
+?>
+
+<main id="cmp-main" class="paper-page single">
+	<?php while ( have_posts() ) : the_post(); ?>
+
+		<header class="paper-page__head">
+			<a class="back-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">← <?php esc_html_e( 'back to workshop', 'cactusman-portfolio' ); ?></a>
+			<div class="section-label">// <?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></div>
+			<h1 class="paper-page__title"><?php the_title(); ?></h1>
+			<?php
+			$tech = cmp_first_tech_tag( get_the_ID() );
+			$mins = max( 1, (int) round( str_word_count( wp_strip_all_tags( get_the_content() ) ) / 200 ) );
+			?>
+			<div class="paper-page__meta">
+				<?php if ( $tech ) : ?>
+					<span><?php echo esc_html( $tech ); ?></span>
+					<span aria-hidden="true">·</span>
+				<?php endif; ?>
+				<span><?php echo (int) $mins; ?> <?php esc_html_e( 'min read', 'cactusman-portfolio' ); ?></span>
+			</div>
+		</header>
+
+		<?php if ( has_post_thumbnail() ) : ?>
+			<figure class="paper-page__thumb"><?php the_post_thumbnail( 'cmp-portfolio-hero' ); ?></figure>
+		<?php endif; ?>
+
+		<article class="paper-page__content">
+			<?php the_content(); ?>
+		</article>
+
+		<?php
+		$tags = get_the_terms( get_the_ID(), 'tech_tag' );
+		if ( $tags && ! is_wp_error( $tags ) ) : ?>
+			<footer class="paper-page__foot">
+				<div class="section-label">tagged</div>
+				<div class="tags">
+					<?php foreach ( $tags as $t ) : ?>
+						<a href="<?php echo esc_url( get_term_link( $t ) ); ?>"><?php echo esc_html( $t->name ); ?></a>
+					<?php endforeach; ?>
+				</div>
+			</footer>
+		<?php endif; ?>
+
+		<nav class="post-nav">
+			<?php
+			previous_post_link( '<div class="prev">← %link</div>' );
+			next_post_link( '<div class="next">%link →</div>' );
+			?>
+		</nav>
+
+	<?php endwhile; ?>
+</main>
+
+<?php
+get_template_part( 'template-parts/menu-bar' );
+get_footer();

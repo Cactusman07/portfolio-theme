@@ -1,0 +1,120 @@
+// =======================================================================
+//  Base — reset, typography, body, cursor, accessibility
+// =======================================================================
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+html, body {
+	background: var(--sky-top);
+	color: var(--paper);
+	font-family: var(--font-sans);
+	font-size: 16px;
+	line-height: 1.65;
+}
+
+// The front page is an immersive viewport — no scrolling outside the world.
+body.cmp-world {
+	overflow: hidden;
+	cursor: none;
+	height: 100%;
+}
+
+// Inner pages use the paper palette + normal scrolling.
+body.cmp-paper,
+body.cmp-portfolio-single {
+	background: var(--paper);
+	color: var(--ink);
+	background-image:
+		radial-gradient(circle at 50% 50%, rgba(42, 36, 24, 0.04) 1px, transparent 1px),
+		radial-gradient(circle at 50% 50%, rgba(42, 36, 24, 0.025) 1px, transparent 1px);
+	background-size: 32px 32px, 17px 17px;
+	background-position: 0 0, 8px 8px;
+}
+
+h1, h2, h3, h4 {
+	font-family: var(--font-sans);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.1;
+}
+h2 { font-size: clamp(40px, 5.5vw, 64px); margin-bottom: 24px; }
+h3 { font-size: 22px; margin-bottom: 8px; }
+
+p { max-width: 60ch; line-height: 1.65; }
+a { color: var(--rust); text-decoration: none; transition: color 0.15s; }
+a:hover { color: var(--rust-dark); }
+
+kbd {
+	display: inline-block;
+	background: var(--paper);
+	color: var(--ink);
+	padding: 1px 6px;
+	border: 1px solid var(--ink);
+	border-radius: 2px;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 600;
+	box-shadow: 1px 1px 0 var(--ink);
+}
+
+// --- A11y helpers ---------------------------------------------------------
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+.skip-link:focus {
+	background: var(--ink);
+	color: var(--paper);
+	clip: auto !important;
+	clip-path: none;
+	height: auto;
+	left: 8px;
+	padding: 12px 18px;
+	top: 8px;
+	width: auto;
+	z-index: 100000;
+	font-family: var(--font-mono);
+	font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+// --- Custom cursor (front page only) ------------------------------------
+
+.cursor-dot {
+	position: fixed;
+	width: 8px;
+	height: 8px;
+	background: var(--gold-glow);
+	pointer-events: none;
+	z-index: 9999;
+	transform: translate(-50%, -50%);
+	image-rendering: pixelated;
+	box-shadow: 0 0 0 2px var(--ground);
+	transition: width 0.15s, height 0.15s, background 0.15s;
+
+	&.hover {
+		width: 14px;
+		height: 14px;
+		background: var(--rust);
+	}
+}

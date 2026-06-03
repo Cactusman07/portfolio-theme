@@ -1,0 +1,79 @@
+// =======================================================================
+//  Design tokens
+//
+//  All colour, typography, and spacing values are declared as CSS custom
+//  properties on :root so they can be overridden at runtime (e.g. via the
+//  customizer or a body class) and so the JS can read them when drawing
+//  the canvas mesh.
+// =======================================================================
+
+@use 'sass:map';
+
+:root {
+	// --- Sky / world atmosphere -----------------------------------------
+	--sky-top:      #1a1a3a;
+	--sky-mid:      #3d3568;
+	--sky-low:      #8a5470;
+	--sky-warm:     #d4796a;
+	--sky-glow:     #f4b870;
+	--ground:       #1a1830;
+	--ground-light: #2d2748;
+
+	// --- Cactuar palette ------------------------------------------------
+	--cactus:       #7ab571;
+	--cactus-dark:  #3d6b51;
+	--cactus-light: #aad6a0;
+
+	// --- Paper / panel palette -----------------------------------------
+	--paper:       #f3ead4;
+	--paper-soft:  #ebe1c4;
+	--paper-deep:  #e0d4b1;
+	--ink:         #2a2418;
+	--ink-soft:    #4a3f2b;
+	--ink-muted:   #80715a;
+	--ink-faint:   #b8a888;
+
+	// --- Accents -------------------------------------------------------
+	--rust:      #c45f3a;
+	--rust-dark: #8b3f25;
+	--gold:      #c8932f;
+	--gold-glow: #f4b870;
+
+	// --- Typography ----------------------------------------------------
+	--font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-mono:  'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+	--font-pixel: 'Press Start 2P', monospace;
+
+	// --- UI ------------------------------------------------------------
+	--menu-bar-h:        72px;
+	--menu-bar-h-mobile: 64px;
+	--radius:            0; // chunky / square aesthetic
+
+	// --- Layering ------------------------------------------------------
+	--z-sky-base:        1;
+	--z-sky-fx:          2;
+	--z-parallax:        3;
+	--z-night-overlay:   4;
+	--z-ground:          5;
+	--z-world:           6;
+	--z-overlay-fx:      9;
+	--z-mesh:            10;
+	--z-ui-floating:     12;
+}
+
+// SCSS map of breakpoints, used via the `breakpoint()` mixin below.
+$breakpoints: (
+	'sm': 480px,
+	'md': 800px,
+	'lg': 1100px,
+);
+
+@mixin breakpoint($name) {
+	@if map.has-key($breakpoints, $name) {
+		@media (max-width: map.get($breakpoints, $name)) {
+			@content;
+		}
+	} @else {
+		@warn "Unknown breakpoint `#{$name}`.";
+	}
+}

@@ -1,0 +1,21 @@
+/*!
+Theme Name: Cactusman Portfolio
+Theme URI: https://sammuir.co.nz
+Author: Sam Muir
+Author URI: https://sammuir.co.nz
+Description: A walkable pixel-world portfolio theme. Visitors explore the page as a Cactuar, with parallax dusk landscape, cursor-following particle mesh, and code-bracket-style content panels for About, Portfolio, Blog, and Contact. Game-y but legible.
+Version: 2.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GPL-3.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: cactusman-portfolio
+Tags: portfolio, custom-colors, custom-menu, threaded-comments, translation-ready, blog
+*/
+
+/*
+ * This file is required by WordPress for theme metadata only.
+ * All actual theme styles live in /src/scss/, compiled by Vite to /assets/build/.
+ * See README.md for the build pipeline.
+ */
