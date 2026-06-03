@@ -10,6 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $posts_list = cmp_get_journal_posts( 6 );
+$posts_page_id = (int) get_option( 'page_for_posts' );
+$blog_url      = $posts_page_id ? get_permalink( $posts_page_id ) : home_url( '/blog/' );
+
+if ( ! $blog_url ) {
+	$blog_url = home_url( '/blog/' );
+}
 ?>
 <div class="panel-header">
 	<div class="title"><span class="pin"></span> <span>~/journal</span></div>
@@ -32,7 +38,7 @@ $posts_list = cmp_get_journal_posts( 6 );
 
 		<p class="archive-link">
 			//
-			<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ?: home_url( '/blog/' ) ); ?>">
+			<a href="<?php echo esc_url( $blog_url ); ?>">
 				<?php esc_html_e( 'View all posts →', 'cactusman-portfolio' ); ?>
 			</a>
 		</p>
