@@ -47,20 +47,48 @@ function cmp_get_landmark_positions() {
  * @return WP_Post[]
  */
 function cmp_get_portfolio_items( $limit = 6 ) {
+	$post_types = array();
+
+	if ( post_type_exists( 'portfolio_items' ) ) {
+		$post_types[] = 'portfolio_items';
+	}
+	if ( post_type_exists( 'portfolio' ) ) {
+		$post_types[] = 'portfolio';
+	}
+
+	if ( empty( $post_types ) ) {
+		return array();
+	}
+
 	$query = new WP_Query(
 		array(
-			'post_type'      => 'portfolio',
-			'posts_per_page' => $limit,
-			'post_status'    => 'publish',
-			'meta_key'       => '_cmp_featured_order',
-			'orderby'        => array(
-				'meta_value_num' => 'DESC',
-				'date'           => 'DESC',
-			),
-			'no_found_rows'  => true,
+			'post_type'           => $post_types,
+			'posts_per_page'      => -1,
+			'post_status'         => 'publish',
+			'orderby'             => 'date',
+			'order'               => 'DESC',
+			'ignore_sticky_posts' => true,
+			'no_found_rows'       => true,
 		)
 	);
-	return $query->posts;
+
+	$posts = $query->posts;
+
+	usort(
+		$posts,
+		static function ( $a, $b ) {
+			$a_order = (int) get_post_meta( $a->ID, '_cmp_featured_order', true );
+			$b_order = (int) get_post_meta( $b->ID, '_cmp_featured_order', true );
+
+			if ( $a_order === $b_order ) {
+				return strcmp( $b->post_date_gmt, $a->post_date_gmt );
+			}
+
+			return $b_order <=> $a_order;
+		}
+	);
+
+	return array_slice( $posts, 0, max( 1, (int) $limit ) );
 }
 
 /**

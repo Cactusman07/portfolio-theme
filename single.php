@@ -13,10 +13,14 @@ get_header();
 ?>
 
 <main id="cmp-main" class="paper-page single">
-	<?php while ( have_posts() ) : the_post(); ?>
+	<?php while ( have_posts() ) : the_post();
+		$posts_page_id = (int) get_option( 'page_for_posts' );
+		$blog_url      = $posts_page_id ? get_permalink( $posts_page_id ) : home_url( '/blog/' );
+		$blog_url      = $blog_url ? $blog_url : home_url( '/' );
+	?>
 
 		<header class="paper-page__head">
-			<a class="back-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">← <?php esc_html_e( 'back to workshop', 'cactusman-portfolio' ); ?></a>
+			<a class="back-link" href="<?php echo esc_url( $blog_url ); ?>">← <?php esc_html_e( 'back to blog', 'cactusman-portfolio' ); ?></a>
 			<div class="section-label">// <?php echo esc_html( get_the_date( 'M j, Y' ) ); ?></div>
 			<h1 class="paper-page__title"><?php the_title(); ?></h1>
 			<?php

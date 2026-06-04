@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$top_tag      = cmp_mod( 'cmp_hero_top_tag', '// booting ' . get_bloginfo( 'name' ) . '...');
+$top_tag      = cmp_mod( 'cmp_hero_top_tag', '// booting interactive portfolio...' );
 $headline     = cmp_mod( 'cmp_hero_headline', 'Sam Muir' );
 $headline_hl  = cmp_mod( 'cmp_hero_headline_hl', 'creates for the web' );
 $sub          = cmp_mod( 'cmp_hero_sub', 'I\'m an Auckland-based designer, developer and automation specialist with 12+ years turning complex ideas into high-performing user experiences and efficient automated solutions.' );

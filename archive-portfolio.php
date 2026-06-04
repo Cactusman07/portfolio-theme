@@ -14,7 +14,7 @@ get_header();
 
 <main id="cmp-main" class="paper-page archive">
 	<header class="paper-page__head">
-		<a class="back-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">← <?php esc_html_e( 'back to workshop', 'cactusman-portfolio' ); ?></a>
+		<a class="back-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">← <?php esc_html_e( 'back to home page', 'cactusman-portfolio' ); ?></a>
 		<h1 class="paper-page__title"><?php esc_html_e( 'Portfolio archive', 'cactusman-portfolio' ); ?></h1>
 		<p><?php esc_html_e( 'Every project, dated and tagged.', 'cactusman-portfolio' ); ?></p>
 	</header>

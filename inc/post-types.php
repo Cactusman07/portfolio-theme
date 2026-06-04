@@ -2,9 +2,9 @@
 /**
  * Custom post types and taxonomies.
  *
- * - `portfolio` CPT replaces the old `portfolio_items` CPT from v1.
+ * - `portfolio_items` CPT for portfolio projects.
  * - `skill` CPT for the character-sheet stats.
- * - `tech_tag` taxonomy shared by both, for the small stack badges.
+ * - `tech_tag` taxonomy shared by portfolio, posts and skills.
  *
  * @package CactusmanPortfolio
  */
@@ -14,33 +14,58 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register the Portfolio CPT.
+ * Register the Portfolio Items CPT.
  */
-function cmp_register_portfolio_cpt() {
+function cmp_register_portfolio_items_cpt() {
 	$labels = array(
-		'name'               => __( 'Portfolio', 'cactusman-portfolio' ),
-		'singular_name'      => __( 'Portfolio item', 'cactusman-portfolio' ),
+		'name'               => __( 'Portfolio Items', 'cactusman-portfolio' ),
+		'singular_name'      => __( 'Portfolio Item', 'cactusman-portfolio' ),
 		'add_new_item'       => __( 'Add new portfolio item', 'cactusman-portfolio' ),
 		'edit_item'          => __( 'Edit portfolio item', 'cactusman-portfolio' ),
 		'view_item'          => __( 'View portfolio item', 'cactusman-portfolio' ),
-		'menu_name'          => __( 'Portfolio', 'cactusman-portfolio' ),
+		'menu_name'          => __( 'Portfolio Items', 'cactusman-portfolio' ),
 	);
 
 	register_post_type(
-		'portfolio',
+		'portfolio_items',
 		array(
-			'labels'        => $labels,
-			'public'        => true,
-			'show_in_rest'  => true,
-			'menu_icon'     => 'dashicons-portfolio',
-			'has_archive'   => 'work',
-			'rewrite'       => array( 'slug' => 'work' ),
-			'supports'      => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
-			'menu_position' => 5,
+			'labels'              => $labels,
+			'public'              => true,
+			'show_ui'             => true,
+			'show_in_rest'        => true,
+			'menu_icon'           => 'dashicons-portfolio',
+			'has_archive'         => 'portfolio',
+			'rewrite'             => array(
+				'slug'       => 'portfolio',
+				'with_front' => false,
+			),
+			'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'revisions' ),
+			'show_in_nav_menus'   => true,
+			'publicly_queryable'  => true,
+			'exclude_from_search' => false,
+			'menu_position'       => 5,
 		)
 	);
 }
-add_action( 'init', 'cmp_register_portfolio_cpt' );
+add_action( 'init', 'cmp_register_portfolio_items_cpt' );
+
+/**
+ * Ensure portfolio item permalinks resolve even when a static /portfolio page exists.
+ */
+function cmp_register_portfolio_item_rewrite_rule() {
+	add_rewrite_rule( '^portfolio/([^/]+)/?$', 'index.php?post_type=portfolio_items&name=$matches[1]', 'top' );
+}
+add_action( 'init', 'cmp_register_portfolio_item_rewrite_rule', 20 );
+
+/**
+ * Flush rewrite rules after theme switch so custom portfolio routes are registered.
+ */
+function cmp_flush_rewrites_on_theme_switch() {
+	cmp_register_portfolio_items_cpt();
+	cmp_register_portfolio_item_rewrite_rule();
+	flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'cmp_flush_rewrites_on_theme_switch' );
 
 /**
  * Register the Skill CPT — used to power the character sheet.
@@ -75,7 +100,7 @@ add_action( 'init', 'cmp_register_skill_cpt' );
 function cmp_register_tech_taxonomy() {
 	register_taxonomy(
 		'tech_tag',
-		array( 'portfolio', 'post', 'skill' ),
+		array( 'portfolio_items', 'post', 'skill' ),
 		array(
 			'labels'            => array(
 				'name'          => __( 'Tech tags', 'cactusman-portfolio' ),
@@ -98,7 +123,7 @@ add_action( 'init', 'cmp_register_tech_taxonomy' );
 function cmp_register_status_taxonomy() {
 	register_taxonomy(
 		'portfolio_status',
-		array( 'portfolio' ),
+		array( 'portfolio_items' ),
 		array(
 			'labels'            => array(
 				'name'          => __( 'Statuses', 'cactusman-portfolio' ),
@@ -121,50 +146,54 @@ add_action( 'init', 'cmp_register_status_taxonomy' );
  * Use ACF or Meta Box plugins for nicer editor UI; this gets a baseline working.
  */
 function cmp_register_portfolio_meta() {
-	register_post_meta(
-		'portfolio',
-		'_cmp_external_url',
-		array(
-			'type'              => 'string',
-			'single'            => true,
-			'show_in_rest'      => true,
-			'sanitize_callback' => 'esc_url_raw',
-			'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
-		)
-	);
-	register_post_meta(
-		'portfolio',
-		'_cmp_year',
-		array(
-			'type'              => 'string',
-			'single'            => true,
-			'show_in_rest'      => true,
-			'sanitize_callback' => 'sanitize_text_field',
-			'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
-		)
-	);
-	register_post_meta(
-		'portfolio',
-		'_cmp_icon_svg',
-		array(
-			'type'              => 'string',
-			'single'            => true,
-			'show_in_rest'      => true,
-			'sanitize_callback' => 'wp_kses_post',
-			'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
-		)
-	);
-	register_post_meta(
-		'portfolio',
-		'_cmp_featured_order',
-		array(
-			'type'              => 'integer',
-			'single'            => true,
-			'show_in_rest'      => true,
-			'default'           => 0,
-			'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
-		)
-	);
+	$portfolio_post_types = array( 'portfolio_items' );
+
+	foreach ( $portfolio_post_types as $portfolio_post_type ) {
+		register_post_meta(
+			$portfolio_post_type,
+			'_cmp_external_url',
+			array(
+				'type'              => 'string',
+				'single'            => true,
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'esc_url_raw',
+				'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
+			)
+		);
+		register_post_meta(
+			$portfolio_post_type,
+			'_cmp_year',
+			array(
+				'type'              => 'string',
+				'single'            => true,
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
+			)
+		);
+		register_post_meta(
+			$portfolio_post_type,
+			'_cmp_icon_svg',
+			array(
+				'type'              => 'string',
+				'single'            => true,
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'wp_kses_post',
+				'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
+			)
+		);
+		register_post_meta(
+			$portfolio_post_type,
+			'_cmp_featured_order',
+			array(
+				'type'              => 'integer',
+				'single'            => true,
+				'show_in_rest'      => true,
+				'default'           => 0,
+				'auth_callback'     => function () { return current_user_can( 'edit_posts' ); },
+			)
+		);
+	}
 
 	// Skill meta — percentage 0–100 and a "levelling up" flag for the green stripe.
 	register_post_meta(

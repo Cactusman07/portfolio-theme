@@ -76,10 +76,10 @@ function cmp_body_classes( $classes ) {
 	if ( is_front_page() ) {
 		$classes[] = 'cmp-world';
 	}
-	if ( is_singular( 'portfolio' ) ) {
+	if ( is_singular( 'portfolio_items' ) ) {
 		$classes[] = 'cmp-portfolio-single';
 	}
-	if ( is_singular( 'post' ) || is_home() || is_archive() ) {
+	if ( is_singular( 'post' ) || is_home() || is_archive() || is_404() || is_page( 'portfolio' ) ) {
 		$classes[] = 'cmp-paper';
 	}
 	return $classes;

@@ -39,7 +39,7 @@ $items = cmp_get_portfolio_items( 8 );
 
 		<p class="archive-link">
 			//
-			<a href="<?php echo esc_url( get_post_type_archive_link( 'portfolio' ) ); ?>">
+			<a href="<?php echo esc_url( get_post_type_archive_link( 'portfolio_items' ) ); ?>">
 				<?php esc_html_e( 'View full portfolio archive →', 'cactusman-portfolio' ); ?>
 			</a>
 		</p>
@@ -49,7 +49,7 @@ $items = cmp_get_portfolio_items( 8 );
 			printf(
 				/* translators: %s: link wrapper */
 				esc_html__( 'No portfolio items yet. %sAdd some via Portfolio → Add new%s.', 'cactusman-portfolio' ),
-				'<a href="' . esc_url( admin_url( 'post-new.php?post_type=portfolio' ) ) . '">',
+				'<a href="' . esc_url( admin_url( 'post-new.php?post_type=portfolio_items' ) ) . '">',
 				'</a>'
 			);
 			?>

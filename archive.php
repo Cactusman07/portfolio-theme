@@ -14,7 +14,7 @@ get_header();
 
 <main id="cmp-main" class="paper-page archive">
 	<header class="paper-page__head">
-		<a class="back-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">← <?php esc_html_e( 'back to workshop', 'cactusman-portfolio' ); ?></a>
+		<a class="back-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">← <?php esc_html_e( 'back to home page', 'cactusman-portfolio' ); ?></a>
 		<h1 class="paper-page__title"><?php the_archive_title(); ?></h1>
 		<?php the_archive_description( '<p>', '</p>' ); ?>
 	</header>

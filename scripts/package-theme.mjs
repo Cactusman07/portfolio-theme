@@ -1,4 +1,6 @@
-import { copyFile, mkdir, readdir, stat } from "node:fs/promises";
+import { copyFile, mkdir, readdir, rm, stat } from "node:fs/promises";
+import { createWriteStream } from "node:fs";
+import { ZipArchive } from "archiver";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,6 +9,7 @@ const projectRoot = path.resolve(scriptDir, "..");
 const themeSlug = path.basename(projectRoot);
 const buildRoot = path.join(projectRoot, "build");
 const outDir = path.join(buildRoot, themeSlug);
+const outZip = path.join(buildRoot, `${themeSlug}.zip`);
 const COPY_TIMEOUT_MS = 5000;
 
 const rootFilesToInclude = new Set(["style.css", "favicon.ico"]);
@@ -49,6 +52,11 @@ async function pathExists(targetPath) {
   }
 }
 
+async function cleanBuildArtifacts() {
+  await rm(outDir, { recursive: true, force: true });
+  await rm(outZip, { force: true });
+}
+
 async function copyRootPhpFiles() {
   const entries = await readdir(projectRoot, { withFileTypes: true });
 
@@ -59,8 +67,9 @@ async function copyRootPhpFiles() {
 
     const isPhp = path.extname(entry.name).toLowerCase() === ".php";
     const isKnownFile = rootFilesToInclude.has(entry.name);
+    const isScreenshot = /^screenshot\.(png|jpg|jpeg|gif)$/i.test(entry.name);
 
-    if (!isPhp && !isKnownFile) {
+    if (!isPhp && !isKnownFile && !isScreenshot) {
       continue;
     }
 
@@ -113,15 +122,34 @@ async function copyThemeDirectories() {
   }
 }
 
+async function createThemeZip() {
+  await new Promise((resolve, reject) => {
+    const output = createWriteStream(outZip);
+    const archive = new ZipArchive({ zlib: { level: 9 } });
+
+    output.on("close", resolve);
+    output.on("error", reject);
+    archive.on("error", reject);
+
+    archive.pipe(output);
+    archive.directory(outDir, themeSlug);
+    archive.finalize();
+  });
+}
+
 async function main() {
   console.log("Packaging theme...");
   await mkdir(buildRoot, { recursive: true });
+  await cleanBuildArtifacts();
   await mkdir(outDir, { recursive: true });
 
   await copyRootPhpFiles();
   console.log("Copied root files.");
   await copyThemeDirectories();
   console.log("Copied theme directories.");
+
+  await createThemeZip();
+  console.log(`Theme zip created: ${path.relative(projectRoot, outZip)}`);
 
   console.log(`Theme package created: ${path.relative(projectRoot, outDir)}`);
 }
