@@ -15,7 +15,7 @@ $class     = cmp_mod( 'cmp_about_class', 'full-stack generalist · front-end lea
 $level     = cmp_mod( 'cmp_about_level', '12' );
 $inventory = cmp_split_csv( cmp_mod( 'cmp_about_inventory', '' ) );
 $status    = cmp_mod( 'cmp_status_body', 'Available for new web design & development work — especially anything with a creative angle.' );
-$skills    = cmp_get_skills( 8 );
+$skills    = cmp_get_skills( -1 );
 ?>
 <div class="panel-header">
 	<div class="title"><span class="pin"></span> <span>~/about</span></div>
