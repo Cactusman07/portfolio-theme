@@ -58,6 +58,8 @@ $target    = $external ? ' target="_blank" rel="noopener"' : '';
 		<?php endif; ?>
 	</div>
 
+	<div class="quest-date">// <?php echo esc_html( get_the_date( 'M j, Y', $post_obj ) ); ?></div>
+
 	<div class="quest-title"><?php echo esc_html( get_the_title( $post_obj ) ); ?></div>
 
 	<div class="quest-desc">

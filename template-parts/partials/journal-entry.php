@@ -17,10 +17,16 @@ if ( empty( $args['post'] ) ) {
 }
 
 $post_obj  = $args['post'];
-$tech      = cmp_first_tech_tag( $post_obj->ID );
+$categories = get_the_category( $post_obj->ID );
+$tags       = get_the_tags( $post_obj->ID );
 $read_time = max( 1, (int) round( str_word_count( wp_strip_all_tags( $post_obj->post_content ) ) / 200 ) );
 ?>
 <a class="entry" href="<?php echo esc_url( get_permalink( $post_obj ) ); ?>">
+	<?php if ( $categories ) : ?>
+		<div class="entry-cats">
+			<?php echo esc_html( implode( ', ', wp_list_pluck( $categories, 'name' ) ) ); ?>
+		</div>
+	<?php endif; ?>
 	<div class="entry-date">// <?php echo esc_html( get_the_date( 'M j, Y', $post_obj ) ); ?></div>
 	<div class="entry-title"><?php echo esc_html( get_the_title( $post_obj ) ); ?></div>
 	<div class="entry-excerpt">
@@ -29,8 +35,16 @@ $read_time = max( 1, (int) round( str_word_count( wp_strip_all_tags( $post_obj->
 		echo esc_html( $excerpt );
 		?>
 	</div>
+	<?php if ( $tags ) : ?>
+		<p class="entry-tags">
+			<?php
+			$tag_names = wp_list_pluck( $tags, 'name' );
+			echo esc_html( implode( ', ', $tag_names ) );
+			?>
+		</p>
+	<?php endif; ?>
 	<div class="entry-foot">
-		<span><?php echo esc_html( $tech ? $tech : get_the_date( 'Y', $post_obj ) ); ?></span>
+		<span><?php echo esc_html( get_the_date( 'Y', $post_obj ) ); ?></span>
 		<span class="read"><?php echo (int) $read_time; ?> min →</span>
 	</div>
 </a>
